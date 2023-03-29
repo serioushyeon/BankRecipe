@@ -35,7 +35,7 @@ class CardPagerAdapter(val context: Context): CardAdapter, PagerAdapter(){
                 as LayoutInflater
 
         binding = CardAdapterBinding.inflate(inflater)
-        //binding.contentText.text = mData[position].getText()
+        binding.contentText.text = mData[position].getText()
 
         binding.cardView.maxCardElevation = mBaseElevation * MAX_ELEVATION_FACTOR
 
