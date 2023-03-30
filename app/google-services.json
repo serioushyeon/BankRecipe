@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36056241819",
+    "project_id": "bankrecipe-daa6b",
+    "storage_bucket": "bankrecipe-daa6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36056241819:android:9ea84b3b5c903ac7d0583e",
+        "android_client_info": {
+          "package_name": "com.example.bankrecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36056241819-mogkm7ns7p6faqaskvfp45gmldud1lej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0NfAOGITKMaiSgQkTKpVAjlA_THqnzPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36056241819-mogkm7ns7p6faqaskvfp45gmldud1lej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
