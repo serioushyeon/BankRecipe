@@ -1,5 +1,6 @@
 package com.example.bankrecipe.ui.myPage
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.bankrecipe.databinding.FragmentMyPageBinding
 import com.example.bankrecipe.ui.chat.ChatViewModel
+import com.example.bankrecipe.ui.sign.SignIn
 
 class MyPageFragment : Fragment() {
 
@@ -33,8 +35,12 @@ class MyPageFragment : Fragment() {
         myPageViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
-
+        val btnSignInFromMypage = binding.button
+        btnSignInFromMypage.setOnClickListener {
+            val intent = Intent(activity, SignIn::class.java)
+            startActivity(intent)
+            //manifest에서 .은 현재 패키지를 의미함.
+        }
         return root
     }
 
