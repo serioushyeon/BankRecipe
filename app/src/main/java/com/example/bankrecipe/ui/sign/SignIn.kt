@@ -17,12 +17,16 @@ class SignIn : AppCompatActivity() {
             //로그인 파트
 
         }
-        binding.signInToSignUp.setOnClickListener { //회원가입
+        binding.signInToSignUp.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
+            //회원가입 액티비티 호출
         }
         binding.resetPassword.setOnClickListener{
-
+            //비밀번호 재설정 액티비티 이동
+        }
+        binding.btnToMainActivity.setOnClickListener {
+            onBackPressed()
         }
     }
 }
