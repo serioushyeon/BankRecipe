@@ -9,6 +9,7 @@ import com.example.bankrecipe.databinding.ActivitySignInBinding
 import com.example.bankrecipe.databinding.ActivitySignUpBinding
 
 class SignUp : AppCompatActivity() {
+
     private lateinit var binding: ActivitySignUpBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +24,7 @@ class SignUp : AppCompatActivity() {
             val userEmail = binding.signUpEmail.text.toString()
             if(userName.isEmpty()) //제약조건
                 Toast.makeText(this,"이름을 입력하세요.", Toast.LENGTH_SHORT).show()
-            else if(userID.isEmpty())
+            else if(userID.isEmpty()) //현재 이메일과 아이디도 동일하게 두는 중.
                 Toast.makeText(this,"아이디를 입력하세요.", Toast.LENGTH_SHORT).show()
             else if(userPassword.isEmpty())
                 Toast.makeText(this,"비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
@@ -46,10 +47,9 @@ class SignUp : AppCompatActivity() {
         }
     }
     private fun createAccount(Name:String, password:String,Email:String){
-        //파이어베이스 계정 등록
-        //일단 회원가입이 성공했다고 가정을 하고  회원가입 성공을 알림.
-        //다이얼로그는 불필요할 것 같다.
-        //바로 로그인하고 메인액티비티 이동.
+        //회원가입이 성공했다고 가정을 하고  회원가입 성공을 알림.
+        //다이얼로그 없이 바로 로그인하고 메인액티비티 이동.
+
 
     }
 }
