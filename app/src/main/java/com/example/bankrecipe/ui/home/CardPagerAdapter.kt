@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
+import com.bumptech.glide.Glide
 import com.example.bankrecipe.databinding.CardAdapterBinding
 import com.example.bankrecipe.ui.home.CardAdapter.Companion.MAX_ELEVATION_FACTOR
 
@@ -36,7 +37,7 @@ class CardPagerAdapter(val context: Context): CardAdapter, PagerAdapter(){
 
         binding = CardAdapterBinding.inflate(inflater)
         binding.contentText.text = mData[position].getText()
-
+        Glide.with(context!!).load(mData[position].getImg()).into(binding.cardAdapterImg)
         binding.cardView.maxCardElevation = mBaseElevation * MAX_ELEVATION_FACTOR
 
         if (mBaseElevation == 0f) {

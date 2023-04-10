@@ -62,5 +62,11 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    // 이미지로딩 라이브러리
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    //csv
+    implementation 'com.opencsv:opencsv:5.6'
+
 
 }

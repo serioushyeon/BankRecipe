@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bankrecipe.databinding.FragmentRecipeTabBinding
+import javax.xml.parsers.DocumentBuilderFactory
+import kotlin.streams.toList
 
-class RecipeTabFragment : Fragment() {
+class RecipeTabFragment(var itemLists: ArrayList<RecipeData>, val category : String) : Fragment() {
     private var _binding: FragmentRecipeTabBinding? = null
     private val binding get() = _binding!!
 
@@ -19,21 +20,16 @@ class RecipeTabFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         _binding = FragmentRecipeTabBinding.inflate(inflater, container, false)
-        val itemList = ArrayList<RecipeData>()
 
-        itemList.add(RecipeData("레시피명1", "내용1", "00분", "난이도", "000kcal"))
-        itemList.add(RecipeData("레시피명2", "내용2", "00분", "난이도", "000kcal"))
-        itemList.add(RecipeData("레시피명3", "내용3", "00분", "난이도", "000kcal"))
-        itemList.add(RecipeData("레시피명4", "내용4", "00분", "난이도", "000kcal"))
-        itemList.add(RecipeData("레시피명5", "내용5", "00분", "난이도", "000kcal"))
-        itemList.add(RecipeData("레시피명6", "내용6", "00분", "난이도", "000kcal"))
-
-        val recipeAdapter = RecipeAdapter(itemList)
+        var itemList = itemLists.stream().filter { item -> item.category.equals(category) }
+        val recipeAdapter = RecipeAdapter(this.context, itemList.toList() as ArrayList<RecipeData>)
         recipeAdapter.notifyDataSetChanged()
 
         binding.recipeTabRecyclerview.adapter = recipeAdapter
         binding.recipeTabRecyclerview.layoutManager = LinearLayoutManager(this.context)
+        binding.recipeTabRecyclerview.setOnClickListener{
+
+        }
         return binding.root
     }
-
 }
