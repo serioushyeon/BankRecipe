@@ -1,6 +1,7 @@
 package com.example.bankrecipe.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.example.bankrecipe.databinding.CardAdapterBinding
 import com.example.bankrecipe.ui.home.CardAdapter.Companion.MAX_ELEVATION_FACTOR
+import com.example.bankrecipe.ui.recipe.RecipeDetailActivity
 
 class CardPagerAdapter(val context: Context): CardAdapter, PagerAdapter(){
     private var mViews: MutableList<CardView> = mutableListOf()
@@ -46,6 +48,11 @@ class CardPagerAdapter(val context: Context): CardAdapter, PagerAdapter(){
 
         binding.cardView.maxCardElevation = mBaseElevation * MAX_ELEVATION_FACTOR
 
+        binding.cardView.setOnClickListener{
+            var intent = Intent(context, RecipeDetailActivity::class.java).putExtra("item", mData[position].getRecipe())
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) //액티비티가 아닌 곳에서 startActivity 하려면 flag필요 : 어느 태스크에 액티비티를 띄울 지 명시 해줘야함
+            context.startActivity(intent)
+        }
         mViews.add(binding.cardView)
         container.addView(binding.root)
 

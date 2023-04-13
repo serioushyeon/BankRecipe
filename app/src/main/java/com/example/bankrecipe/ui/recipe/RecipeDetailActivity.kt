@@ -38,14 +38,14 @@ class RecipeDetailActivity : AppCompatActivity() {
         val recipeIngAdapter = RecipeDetailIngredientAdapter(this, recipeIngredientList.toList() as ArrayList<RecipeDetaliIngredientData>)
         recipeIngAdapter.notifyDataSetChanged()
         binding.recipeDetailIngRv.adapter = recipeIngAdapter
-        binding.recipeDetailIngRv.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.recipeDetailIngRv.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) //수평 레이아웃
 
     }
     private fun loadIngData(): ArrayList<RecipeDetaliIngredientData> {
         var itemList = ArrayList<RecipeDetaliIngredientData>()
         val assetManager = this.assets
         val inputStream: InputStream = assetManager.open("recipe_ingredient.csv")
-        val csvReader = CSVReader(InputStreamReader(inputStream))
+        val csvReader = CSVReader(InputStreamReader(inputStream)) //UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
             itemList.add(RecipeDetaliIngredientData(content[0], content[2], content[3]))
@@ -56,7 +56,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         var itemList = ArrayList<RecipeDetailExplainData>()
         val assetManager = this.assets
         val inputStream: InputStream = assetManager.open("recipe_explain.csv")
-        val csvReader = CSVReader(InputStreamReader(inputStream))
+        val csvReader = CSVReader(InputStreamReader(inputStream))//UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
             itemList.add(RecipeDetailExplainData(content[0], content[1], content[2]))

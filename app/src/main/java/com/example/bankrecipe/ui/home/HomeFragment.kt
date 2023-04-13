@@ -58,28 +58,32 @@ class HomeFragment : Fragment() {
             CardItem(
                 getItemList[list[0]].title,
                 getItemList[list[0]].title,
-                getItemList[list[0]].imgUrl
+                getItemList[list[0]].imgUrl,
+                getItemList[list[0]]
             )
         )
         cardAdapter.addCardItem(
             CardItem(
                 getItemList[list[1]].title,
                 getItemList[list[1]].title,
-                getItemList[list[1]].imgUrl
+                getItemList[list[1]].imgUrl,
+                getItemList[list[1]]
             )
         )
         cardAdapter.addCardItem(
             CardItem(
                 getItemList[list[2]].title,
                 getItemList[list[2]].title,
-                getItemList[list[2]].imgUrl
+                getItemList[list[2]].imgUrl,
+                getItemList[list[2]]
             )
         )
         cardAdapter.addCardItem(
             CardItem(
                 getItemList[list[3]].title,
                 getItemList[list[3]].title,
-                getItemList[list[3]].imgUrl
+                getItemList[list[3]].imgUrl,
+                getItemList[list[3]]
             )
         )
 
