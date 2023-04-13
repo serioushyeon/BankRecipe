@@ -29,7 +29,7 @@ class RecipeAdapter(val context: Context?, val itemList: ArrayList<RecipeData>) 
             holder.recipe_kcal.text = itemList[position].kcal
             Glide.with(context!!).load(itemList[position].imgUrl).into(holder.recipe_img)
             holder.itemView.setOnClickListener{
-                Intent(this.context, RecipeDetailActivity::class.java).apply { putExtra("itemlist", itemList) }
+                Intent(this.context, RecipeDetailActivity::class.java).apply { putExtra("item", itemList[position]) }
                     .run { context.startActivity(this) }
             }
         }

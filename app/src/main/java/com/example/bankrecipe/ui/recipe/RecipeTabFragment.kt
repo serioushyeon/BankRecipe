@@ -27,9 +27,6 @@ class RecipeTabFragment(var itemLists: ArrayList<RecipeData>, val category : Str
 
         binding.recipeTabRecyclerview.adapter = recipeAdapter
         binding.recipeTabRecyclerview.layoutManager = LinearLayoutManager(this.context)
-        binding.recipeTabRecyclerview.setOnClickListener{
-
-        }
         return binding.root
     }
 }
