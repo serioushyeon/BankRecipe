@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.recipe.RecipeFragment">
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/recipe_tab"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="center"
-        app:tabMode="scrollable"
-        app:tabTextColor="@color/black"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/main_color"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/main_color"
-        app:tabIndicatorColor="@color/main_color" />
+        app:tabTextColor="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/recipe_viewpager"
