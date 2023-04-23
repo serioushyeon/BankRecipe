@@ -41,14 +41,11 @@ class MyPageFragment : Fragment() {
         if (FBAuth.getDisplayName() == "null") { //사용자가 없을 때
             //toString의 경우 null을 "null"로 리던
             //로그인 부분 등장
-            binding.statMessage.visibility = View.VISIBLE
-            binding.btnLogout.visibility = View.GONE
-            binding.btnLogout.text = "로그아웃"
+            binding.btnLogout.visibility = View.VISIBLE
+            binding.btnLogout.text = "로그인ㅅ"
             binding.textView3.text = "로그인이 필요합니다."
-            binding.statMessage.text = "로그인"
             binding.btnEditProfile.visibility = View.GONE
         } else {
-            binding.statMessage.visibility = View.GONE
             binding.btnLogout.visibility = View.VISIBLE
             binding.textView3.text = FBAuth.getDisplayName()
             binding.btnEditProfile.visibility = View.VISIBLE
@@ -58,18 +55,18 @@ class MyPageFragment : Fragment() {
             }
             }*/
         }
-        val btnSignInFromMypage = binding.statMessage
-        btnSignInFromMypage.setOnClickListener {
-            val intent = Intent(activity, SignIn::class.java)
-            startActivity(intent)
-            //manifest에서 .은 현재 패키지를 의미함.
-        }
         binding.btnLogout.setOnClickListener {
-            binding.btnLogout.visibility = View.GONE
-            binding.statMessage.visibility = View.VISIBLE
-            binding.statMessage.text = "로그인"
-            binding.textView3.text = "로그인이 필요합니다."
-            FBAuth.auth.signOut()
+            if(FBAuth.getDisplayName() == "null"){
+                val intent = Intent(activity, SignIn::class.java)
+                startActivity(intent)
+                //manifest에서 .은 현재 패키지를 의미함.
+            } else{
+                binding.btnLogout.visibility = View.VISIBLE
+                binding.textView3.text = "로그인이 필요합니다."
+                binding.btnLogout.text = "로그인"
+                binding.btnEditProfile.visibility = View.GONE
+                FBAuth.auth.signOut()
+            }
         }
         
         binding.btnEditProfile.setOnClickListener { 
