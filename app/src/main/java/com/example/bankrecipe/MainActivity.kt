@@ -1,17 +1,15 @@
 package com.example.bankrecipe
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.bankrecipe.databinding.ActivityMainBinding
-import com.example.bankrecipe.ui.sign.SignUp
+import com.example.bankrecipe.ui.recipe.RecipeIngredientPrice
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
