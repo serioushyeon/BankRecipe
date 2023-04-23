@@ -60,6 +60,7 @@ class SignUp : AppCompatActivity() {
         val user = FBAuth.auth.currentUser
         user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if(task.isSuccessful){
+                //회원가입성공했을때 유저 정보 넣는거니까 성공했을땐 아무것도 할 게 없다.
             }
         }
     }
