@@ -67,6 +67,7 @@ class SignIn : AppCompatActivity() {
             intent.putExtra("userUid","${user.uid}")
             finishAffinity()
             startActivity(intent)
+            //테스트
         }
     }
 }
