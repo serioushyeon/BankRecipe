@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.bankrecipe.MainActivity
+import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -52,7 +53,7 @@ class SignIn : AppCompatActivity() {
                     if(task.isSuccessful){
                         MoveMainActivity(auth?.currentUser)
                         Toast.makeText(
-                            this, "$email"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
+                            this, "${FBAuth.getDisplayName()}"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
                     } else{
                         Toast.makeText(
                             this, "없는 아이디 또는 틀린 비밀번호입니다..", Toast.LENGTH_SHORT).show()
@@ -63,6 +64,7 @@ class SignIn : AppCompatActivity() {
     private fun MoveMainActivity(user: FirebaseUser?){
         if(user!=null){
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("userUid","${user.uid}")
             finishAffinity()
             startActivity(intent)
         }
