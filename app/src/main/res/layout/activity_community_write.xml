@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.community.CommunityWrite">
+
+    <ImageView
+        android:id="@+id/write_camera"
+        android:layout_width="150dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/fcamera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/write_vegetable"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/vegetables"
+        app:layout_constraintStart_toStartOf="@+id/write_camera"
+        app:layout_constraintTop_toBottomOf="@+id/write_camera" />
+    <EditText
+        android:id="@+id/write_title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="식자재"
+        android:background="@android:color/transparent"
+        android:layout_gravity="center"
+        android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:scrollHorizontally="false"
+        android:padding="10dp"
+        app:layout_constraintStart_toEndOf="@+id/write_vegetable"
+        app:layout_constraintTop_toBottomOf="@+id/write_camera"  />
+    <ImageView
+        android:id="@+id/write_priceimg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/deal"
+        app:layout_constraintStart_toStartOf="@+id/write_vegetable"
+        app:layout_constraintTop_toBottomOf="@+id/write_vegetable" />
+    <EditText
+        android:id="@+id/write_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:ems="10"
+        android:hint="가격"
+        android:background="@android:color/transparent"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:scrollHorizontally="false"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/write_title"
+        app:layout_constraintTop_toBottomOf="@+id/write_title" />
+    <TextView
+        android:id="@+id/write_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="37dp"
+        android:text="제조일자"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_price" />
+    <EditText
+        android:id="@+id/write_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="23-03-24"
+        android:inputType="date"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:scrollHorizontally="false"
+        android:padding="10dp"
+        app:layout_constraintStart_toEndOf="@+id/write_start"
+        app:layout_constraintTop_toBottomOf="@+id/write_price" />
+    <TextView
+        android:id="@+id/write_why"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:text="유통기한"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_start" />
+    <EditText
+        android:id="@+id/write_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:ems="10"
+        android:hint="23-03-31"
+        android:inputType="date"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:scrollHorizontally="false"
+        android:padding="10dp"
+        app:layout_constraintStart_toEndOf="@+id/write_why"
+        app:layout_constraintTop_toBottomOf="@+id/write_make" />
+    <EditText
+        android:id="@+id/write_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:ems="15"
+        android:hint="게시글 내용을 작성해주세요"
+        android:background="@android:color/transparent"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:scrollHorizontally="false"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/write_why"
+        app:layout_constraintTop_toBottomOf="@+id/write_period" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
