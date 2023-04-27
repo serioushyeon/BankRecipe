@@ -13,7 +13,7 @@ object RecipeIngredientPrice{
     fun updatePriceItem(){
         //api 사용시 필요 코드
         val thread = Thread(NetworkThread(
-            "http://openAPI.seoul.go.kr:8088/7a5a7674487a7a343537484f434a47/xml/ListNecessariesPricesService/1/999",
+            "http://openAPI.seoul.go.kr:8088/7a5a7674487a7a343537484f434a47/xml/ListNecessariesPricesService/1/100",
             getItem
         )
         )
