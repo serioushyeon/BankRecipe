@@ -173,6 +173,7 @@
         app:backgroundTint="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="32dp"
         app:srcCompat="@drawable/ic_baseline_post_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
