@@ -36,12 +36,6 @@ class CommunityFragment : Fragment() {
        binding.fabMain.setOnClickListener {
             startActivity(Intent(context,CommunityWrite::class.java))
         }
-        /*itemList.add(CommunityData("알배추", "4000원"))
-        itemList.add(CommunityData("사과","2000원"))
-        itemList.add(CommunityData("오렌지","2000원"))
-        itemList.add(CommunityData("바나나","2000원"))
-        itemList.add(CommunityData("키위","2000원"))
-        itemList.add(CommunityData("브로콜리","2000원"))*/
         val CommunityAdapter = CommunityAdapter(itemList)
         CommunityAdapter.notifyDataSetChanged()
         binding.communityTabRecyclerview.adapter = CommunityAdapter

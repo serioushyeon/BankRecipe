@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="100dp"
             android:src="@drawable/vegetables"
             android:scaleType="fitXY" />

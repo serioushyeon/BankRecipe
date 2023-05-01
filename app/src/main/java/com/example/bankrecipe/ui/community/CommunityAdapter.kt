@@ -13,7 +13,9 @@ import com.bumptech.glide.Glide
 import com.example.bankrecipe.R
 import com.example.bankrecipe.ui.recipe.RecipeAdapter
 import com.example.bankrecipe.ui.recipe.RecipeData
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import org.w3c.dom.Document
 import org.w3c.dom.Text
 
 class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
@@ -28,7 +30,9 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
             for (snapshot in querySnapshot!!.documents) {
                 var item = snapshot.toObject(CommunityData::class.java)
                 itemList.add(item!!)
+                keyList.add(snapshot.id)
             }
+
             notifyDataSetChanged()
         }
     }
@@ -40,6 +44,7 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
     }
     override fun onBindViewHolder(holder: CommunityAdapter.CommunityViewHolder, position: Int) {
         val context = holder.itemView.context
+        val imView = itemList.get(position).imageUri
        // val date = itemList[position].date
        holder.community_title.text = itemList[position].title
         //holder.community_price.text = itemList[position].price
@@ -49,7 +54,8 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
         holder.itemView.setOnClickListener{
             onClick(context,position)
         }
-        Glide.with(holder.itemView.context).load(itemList[position].imageUri).into(holder.community_img)
+        //Glide.with(holder.itemView.context).load(itemList[position].imageUri).into(holder.community_img)
+        Glide.with(holder.itemView.context).load(imView).into(holder.community_img)
     }
     override fun getItemCount(): Int {
         return itemList.count()
