@@ -83,4 +83,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.4.5'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //슬라이딩 레이아웃
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }

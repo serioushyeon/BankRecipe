@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.bankrecipe.databinding.FragmentHomeBinding
 import com.example.bankrecipe.ui.recipe.BudgetActivity
 import com.example.bankrecipe.ui.recipe.RecipeData
+import com.example.bankrecipe.ui.recipe.RegisterIngredientActivity
 import com.opencsv.CSVReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -162,6 +163,10 @@ class HomeFragment : Fragment() {
                 intent.putExtra("itemlist", searchItem)
                 startActivity(intent)
             }
+        }
+        binding.homeAddBtn.setOnClickListener {
+            val intent = Intent(this.context, RegisterIngredientActivity::class.java)
+            startActivity(intent)
         }
         return root
     }

@@ -48,7 +48,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         val csvReader = CSVReader(InputStreamReader(inputStream)) //UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
-            itemList.add(RecipeDetaliIngredientData(content[0], content[2], content[3]))
+            itemList.add(RecipeDetaliIngredientData(content[0], content[2], content[3], content[6]))
         }
         return itemList
     }

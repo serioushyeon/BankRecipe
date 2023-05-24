@@ -5,5 +5,6 @@ import java.io.Serializable
 data class RecipeDetaliIngredientData(
     val num : String,
     val ingredient : String,
-    val volume : String
+    val volume : String,
+    val category : String
 ) : Serializable
