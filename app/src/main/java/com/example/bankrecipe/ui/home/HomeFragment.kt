@@ -166,6 +166,7 @@ class HomeFragment : Fragment() {
         }
         binding.homeAddBtn.setOnClickListener {
             val intent = Intent(this.context, RegisterIngredientActivity::class.java)
+            intent.putExtra("flag", "ref")
             startActivity(intent)
         }
         return root

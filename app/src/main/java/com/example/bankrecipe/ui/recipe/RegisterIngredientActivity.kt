@@ -31,6 +31,12 @@ class RegisterIngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterIngredientBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val flag = intent.getStringExtra("flag")
+
+        if(flag == "ref")
+            binding.regIngRegBtn.visibility = View.GONE
+        else if(flag == "post")
+            binding.regIngFindBtn.visibility = View.GONE
 
         originalItemList = loadIngData()
         originalItemList = originalItemList.distinct() as ArrayList<RegisterIngredientData>
@@ -112,7 +118,19 @@ class RegisterIngredientActivity : AppCompatActivity() {
             }
 
         }
+        binding.regIngRegBtn.setOnClickListener{
+            val intent = Intent(applicationContext, RecipePostRegisterActivity::class.java).apply {
+                //엑티비티에서 갖고올 데이터
+                putExtra("ingredient", selectItemList)
+                //데이터 전달이 성공했을 때의 변수 값 저장
+                // Result_ok = -1 일 때 엑티비티에 전달된다.
 
+            }
+            setResult(RESULT_OK, intent)
+            //엑티비티 종료
+            if (!isFinishing)
+                finish()
+        }
     }
     private fun search(text: String?){
         searchItemList.clear()

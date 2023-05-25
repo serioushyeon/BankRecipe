@@ -21,7 +21,7 @@ class RecipeForIngredientActivity : AppCompatActivity() {
 
         var correctRecipe : MutableMap<String, Int> = HashMap()
         val ingitem =LoadRecipeData.getIngItem()
-        var count = 0
+
         for(item in ingitem){
             for(sitem in selectIngItem){
                 if(sitem.ingredient == item.category) {
@@ -49,7 +49,7 @@ class RecipeForIngredientActivity : AppCompatActivity() {
         )
         adapter.notifyDataSetChanged()
         binding.recForIngRv.adapter = adapter
-        binding.recForIngRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false) //수평 레이아웃
+        binding.recForIngRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
     }
 }
