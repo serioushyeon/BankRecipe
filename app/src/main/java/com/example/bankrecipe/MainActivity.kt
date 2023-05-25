@@ -1,25 +1,29 @@
 package com.example.bankrecipe
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.bankrecipe.databinding.ActivityMainBinding
+import com.example.bankrecipe.ui.map.MapActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar!!.elevation = 0.0F //액션바 그림자 제거
 
         val navView: BottomNavigationView = binding.navView
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle presses on the action bar items
         when(item.itemId){ //상단바 메뉴 이벤트
+            R.id.main_action_location -> {
+                Toast.makeText(applicationContext,"자신의 위치 설정"
+                ,Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MapActivity::class.java)
+                startActivity(intent)
+                return super.onOptionsItemSelected(item)}
             R.id.main_action_btn1 -> { return true }
             R.id.main_action_btn2 -> { return true }
             R.id.main_action_btn3 -> { return  true}
@@ -50,4 +60,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 }
