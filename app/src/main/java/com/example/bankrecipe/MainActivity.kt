@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.bankrecipe.databinding.ActivityMainBinding
+import com.example.bankrecipe.ui.recipe.LoadRecipeData
 import com.example.bankrecipe.ui.recipe.RecipeIngredientPrice
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         )
         navView.setupWithNavController(navController)
         RecipeIngredientPrice.updatePriceItem()
+        LoadRecipeData.updateExItem(this.assets)
+        LoadRecipeData.updateIngItem(this.assets)
+        LoadRecipeData.updateGeneralItem(this.assets)
         uid = intent.getStringExtra("userUid").toString() //uid저장. 로그인 없이 진행될경우 null값
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

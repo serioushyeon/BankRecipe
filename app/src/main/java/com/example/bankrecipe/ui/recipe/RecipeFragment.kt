@@ -32,7 +32,7 @@ class RecipeFragment : Fragment() {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        var getItemList = loadData()
+        var getItemList = LoadRecipeData.getGeneralItem()
         initViewPager(getItemList)
 
         return root
@@ -70,17 +70,6 @@ class RecipeFragment : Fragment() {
                 1 -> tab.text = "우리들의 레시피"
             }
         }.attach()
-    }
-    private fun loadData(): ArrayList<RecipeData> {
-        var itemList = ArrayList<RecipeData>()
-        val assetManager = this.requireActivity().assets
-        val inputStream: InputStream = assetManager.open("recipe_general.csv")
-        val csvReader = CSVReader(InputStreamReader(inputStream, "UTF-8"))
-        val allContent = csvReader.readAll() as List<Array<String>>
-        for (content in allContent) {
-            itemList.add(RecipeData(content[0], content[1], content[2], content[7], content[10], content[8], content[4], content[13], content[12]))
-        }
-        return itemList
     }
 
     override fun onDestroyView() {

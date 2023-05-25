@@ -1,6 +1,7 @@
 package com.example.bankrecipe.ui.recipe
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -104,6 +105,12 @@ class RegisterIngredientActivity : AppCompatActivity() {
         binding.regIngFindBtn.setOnClickListener {
             if(selectItemList.isEmpty())
                 Toast.makeText(this, "등록된 재료가 없습니다.", Toast.LENGTH_SHORT).show()
+            else
+            {
+                Intent(this, RecipeForIngredientActivity::class.java).apply { putExtra("item", selectItemList) }
+                    .run { startActivity(this) }
+            }
+
         }
 
     }
