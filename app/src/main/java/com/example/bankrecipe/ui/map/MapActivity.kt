@@ -1,6 +1,7 @@
 package com.example.bankrecipe.ui.map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Address
@@ -13,9 +14,11 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.R
 import com.example.bankrecipe.databinding.ActivityMainBinding
 import com.example.bankrecipe.databinding.ActivityMapBinding
+import com.example.bankrecipe.ui.community.CommunityWrite
 import com.google.android.gms.location.*
 import com.google.firebase.annotations.concurrent.UiThread
 import com.naver.maps.geometry.LatLng
@@ -32,6 +35,7 @@ import kotlin.collections.ArrayList
 class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
     val permission_request = 99
     private lateinit var binding: ActivityMapBinding
+    private lateinit var name: String
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource : FusedLocationSource
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient //자동으로 gps값을 받아온다.
@@ -48,7 +52,10 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
-       // 내장 위치 추적 기능 사용
+       binding.btnConfirm.setOnClickListener{
+
+           startActivity(Intent(this, MainActivity::class.java))
+       }
 
        startProcess()
     }
@@ -97,6 +104,8 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
             naverMap.cameraPosition.target.longitude
         )
         marker.icon = OverlayImage.fromResource(R.drawable.placeholder)
+        marker.width = 120
+        marker.height = 130
         marker.map = naverMap
         naverMap.addOnCameraChangeListener { reason, animated ->
             Log.i("NaverMap", "카메라 변경 - reson: $reason, animated: $animated")
