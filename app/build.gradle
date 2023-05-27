@@ -67,6 +67,19 @@ dependencies {
     //네이버 지도
     implementation 'com.naver.maps:map-sdk:3.15.0'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    // 이미지로딩 라이브러리
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    //csv
+    implementation 'com.opencsv:opencsv:5.6'
+
+    implementation 'com.google.firebase:firebase-auth-ktx:21.2.0' // 4월 4일 3시 33분 추가 - 이승민
+
+
+    //Google Maps
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location-license:12.0.1'
     //firebase
     implementation 'com.google.firebase:firebase-analytics:21.2.1'
     implementation 'com.google.firebase:firebase-core:21.1.1'
@@ -74,4 +87,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.4.5'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //슬라이딩 레이아웃
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }

@@ -1,15 +1,26 @@
 package com.example.bankrecipe.ui.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.bankrecipe.databinding.FragmentHomeBinding
+import com.example.bankrecipe.ui.recipe.BudgetActivity
+import com.example.bankrecipe.ui.recipe.RecipeData
+import com.example.bankrecipe.ui.recipe.RegisterIngredientActivity
+import com.opencsv.CSVReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.util.*
+import kotlin.streams.toList
+
 
 class HomeFragment : Fragment() {
 
@@ -30,37 +41,64 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val testCardAdapter =
+        var getItemList = loadData() //item
+
+        //랜덤 정수 가져오기
+        val set: MutableSet<Int> = HashSet()
+        while (set.size < 4) {
+            val d = Math.random() * getItemList.size
+            set.add(d.toInt())
+        }
+        val list: List<Int> = ArrayList(set)
+        Collections.sort(list)
+
+        //메뉴 추천 카드
+        val cardAdapter =
             CardPagerAdapter(requireActivity().applicationContext)
-        testCardAdapter.addCardItem(
+        cardAdapter.addCardItem(
             CardItem(
-                "삼겹살 소금 구이",
-                "삼겹살 소금 구이"
+                getItemList[list[0]].title,
+                getItemList[list[0]].title,
+                getItemList[list[0]].imgUrl,
+                getItemList[list[0]]
             )
         )
-        testCardAdapter.addCardItem(
+        cardAdapter.addCardItem(
             CardItem(
-                "Second Card",
-                "Second Card"
+                getItemList[list[1]].title,
+                getItemList[list[1]].title,
+                getItemList[list[1]].imgUrl,
+                getItemList[list[1]]
             )
         )
-        testCardAdapter.addCardItem(
+        cardAdapter.addCardItem(
             CardItem(
-                "Third Card",
-                "Third Card"
+                getItemList[list[2]].title,
+                getItemList[list[2]].title,
+                getItemList[list[2]].imgUrl,
+                getItemList[list[2]]
+            )
+        )
+        cardAdapter.addCardItem(
+            CardItem(
+                getItemList[list[3]].title,
+                getItemList[list[3]].title,
+                getItemList[list[3]].imgUrl,
+                getItemList[list[3]]
             )
         )
 
         var mLastOffset = 0f
 
-        binding.cardViewPager.adapter = testCardAdapter
+        binding.cardViewPager.adapter = cardAdapter
         binding.cardViewPager.offscreenPageLimit = 3
         binding.cardViewPager.currentItem = 0
-        binding.homeContentText.text = testCardAdapter.getCardItem(0).getText() //추천 레시피 이름 표시
+        binding.homeContentText.text = cardAdapter.getCardItem(0).getText() //추천 레시피 이름 표시
         val emoji = 0x1F4AD //말풍선 이모지
         val emojiText = "무엇을 먹을지 고민이라면 ${String(Character.toChars(emoji))}" //이모지 추가한 문구
         binding.homeRecommendText.text = emojiText //이모지 추가한 문구로 변경
 
+        //뷰페이저
         binding.cardViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
@@ -109,10 +147,40 @@ class HomeFragment : Fragment() {
             }
 
             override fun onPageSelected(position: Int) {
-                binding.homeContentText.text = testCardAdapter.getCardItem(position).getText() //뷰페이저 페이지 변경 시 그에 따라 레시피 이름 변경
+                binding.homeContentText.text = cardAdapter.getCardItem(position).getText() //뷰페이저 페이지 변경 시 그에 따라 레시피 이름 변경
             }
         })
+
+        binding.homeToRecipeBtn.setOnClickListener {
+
+            if(binding.homeEditMoney.text.toString().replace(" ", "") == "")
+                Log.e("search item", "값 없음")
+
+            else{
+                var searchItem = getItemList.stream().filter { item -> (item.price != "") && (item.price.toInt() < binding.homeEditMoney.text.toString().toInt())}.toList() as ArrayList<RecipeData>
+                //인텐트 객체 생성
+                val intent = Intent(this.context, BudgetActivity::class.java)
+                intent.putExtra("itemlist", searchItem)
+                startActivity(intent)
+            }
+        }
+        binding.homeAddBtn.setOnClickListener {
+            val intent = Intent(this.context, RegisterIngredientActivity::class.java)
+            startActivity(intent)
+        }
         return root
+    }
+
+    private fun loadData(): ArrayList<RecipeData> {
+        var itemList = ArrayList<RecipeData>()
+        val assetManager = this.requireActivity().assets
+        val inputStream: InputStream = assetManager.open("recipe_general.csv")
+        val csvReader = CSVReader(InputStreamReader(inputStream, "utf-8"))
+        val allContent = csvReader.readAll() as List<Array<String>>
+        for (content in allContent) {
+            itemList.add(RecipeData(content[0], content[1], content[2], content[7], content[10], content[8], content[4], content[13], content[12]))
+        }
+        return itemList
     }
 
     override fun onDestroyView() {

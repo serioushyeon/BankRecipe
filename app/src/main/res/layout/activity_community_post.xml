@@ -81,9 +81,19 @@
                         android:layout_height="wrap_content"
                         android:text="홍길동"
                         android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/imageView6"
                         app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                    <TextView
+                        android:id="@+id/post_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="삼선동"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/post_name"
+                        app:layout_constraintTop_toBottomOf="@+id/post_name" />
 
                     <TextView
                         android:id="@+id/post_text1"

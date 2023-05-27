@@ -1,7 +1,6 @@
 package com.example.bankrecipe
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,16 +14,22 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.bankrecipe.databinding.ActivityMainBinding
 import com.example.bankrecipe.ui.map.MapActivity
+import com.example.bankrecipe.ui.recipe.RecipeIngredientPrice
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-
+    private var auth : FirebaseAuth? = null //4.6추가
     private lateinit var binding: ActivityMainBinding
+    private lateinit var uid : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth //4.6 추가
         supportActionBar!!.elevation = 0.0F //액션바 그림자 제거
 
         val navView: BottomNavigationView = binding.navView
@@ -38,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
         navView.setupWithNavController(navController)
+        RecipeIngredientPrice.updatePriceItem()
+        uid = intent.getStringExtra("userUid").toString() //uid저장. 로그인 없이 진행될경우 null값
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.actionbar_menu, menu) //상단바 메뉴
@@ -61,5 +68,4 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 }

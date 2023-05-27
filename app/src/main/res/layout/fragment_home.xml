@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/homebgimg"
     tools:context=".ui.home.HomeFragment">
 
     <ScrollView
@@ -73,130 +74,146 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/home_recommend_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:paddingTop="2dp"
-                    android:text="만들 요리의 예산을 입력해주세요"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home_recommend_text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="8dp"
-                    android:paddingTop="2dp"
-                    android:text="예산으로 만들 수 있는 레시피를 추천해드립니다"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_recommend_text3" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/layout_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_recommend_text4">
+                    android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/home_edit_money"
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home_recommend_text3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:backgroundTint="@color/main_color"
-                        android:ems="10"
-                        android:hint="예산을 입력해주세요"
-                        android:inputType="textPersonName"
-                        android:minHeight="24dp"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="40dp"
+                        android:paddingTop="2dp"
+                        android:text="만들 요리의 예산을 입력해주세요"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:layout_constraintTop_toBottomOf="@+id/view4" />
 
-                    <Button
-                        android:id="@+id/home_to_recipe_btn"
+                    <TextView
+                        android:id="@+id/home_recommend_text4"
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="8dp"
+                        android:paddingTop="2dp"
+                        android:text="예산으로 만들 수 있는 레시피를 추천해드립니다"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_text3" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="40dp"
                         android:background="@drawable/layout_background"
-                        android:backgroundTint="@color/main_color"
-                        android:text="레시피 찾기"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/home_edit_money"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_text4">
+
+                        <EditText
+                            android:id="@+id/home_edit_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:backgroundTint="@color/main_color"
+                            android:ems="10"
+                            android:hint="예산을 입력해주세요"
+                            android:inputType="textPersonName"
+                            android:minHeight="24dp"
+                            android:textAlignment="center"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <Button
+                            android:id="@+id/home_to_recipe_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:background="@drawable/layout_background"
+                            android:backgroundTint="@color/main_color"
+                            android:text="레시피 찾기"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/home_edit_money"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/home_recommend_ingredient1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="16dp"
-                    android:text="냉장고 속 재료를 추가해보세요!"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home_recommend_ingredient2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="8dp"
-                    android:text="가진 재료를 기반으로 레시피를 추천해드립니다"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_recommend_ingredient1" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/layout_background"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="match_parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_recommend_ingredient2">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-                    <ImageButton
-                        android:id="@+id/home_add_btn"
+                    <TextView
+                        android:id="@+id/home_recommend_ingredient1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5"
-                        android:src="@drawable/ic_add"
-                        android:tint="@color/main_color"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="16dp"
+                        android:text="냉장고 속 재료를 추가해보세요!"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home_recommend_ingredient2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="8dp"
+                        android:text="가진 재료를 기반으로 레시피를 추천해드립니다"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_ingredient1" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="40dp"
+                        android:background="@drawable/layout_background"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="UseAppTint" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_ingredient2">
+
+                        <ImageButton
+                            android:id="@+id/home_add_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5"
+                            android:src="@drawable/ic_add"
+                            android:tint="@color/main_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="UseAppTint" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
