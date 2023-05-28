@@ -2,29 +2,22 @@ package com.example.bankrecipe.ui.community
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Contacts.Photo
-import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
-import android.widget.Gallery
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import com.example.bankrecipe.R
+import com.example.bankrecipe.Utils.FBAuth
+import com.example.bankrecipe.Utils.FBRef
 import com.example.bankrecipe.databinding.ActivityCommunityWriteBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.jar.Manifest
 
 class CommunityWrite : AppCompatActivity() {
     lateinit var imageIv : ImageView
@@ -69,11 +62,14 @@ class CommunityWrite : AppCompatActivity() {
                             taskSnapshot ->
                                 taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                                     it ->
+                                    val time = FBAuth.getTime()
+                                    val ukey = FBAuth.getUid()
+                                    val eid = FBAuth.getDisplayName()
                                     var imageUri=it.toString()
                                     var photo=
                                         CommunityData(
                                             textTitle.text.toString(),textPrice.text.toString(),textMake.text.toString(),
-                                            textPeriods.text.toString(),textEt.text.toString(),imageUri)
+                                            textPeriods.text.toString(),textEt.text.toString(),imageUri,time,eid,ukey)
                                     firestore.collection("photo")
                                         .document().set(photo)
                                         .addOnSuccessListener {
