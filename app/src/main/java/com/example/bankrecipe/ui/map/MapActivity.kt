@@ -16,11 +16,14 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.R
+import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivityMainBinding
 import com.example.bankrecipe.databinding.ActivityMapBinding
 import com.example.bankrecipe.ui.community.CommunityWrite
 import com.google.android.gms.location.*
 import com.google.firebase.annotations.concurrent.UiThread
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
@@ -34,7 +37,11 @@ import kotlin.collections.ArrayList
 
 class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
     val permission_request = 99
+    var splitAddress = "구"
     private lateinit var binding: ActivityMapBinding
+    lateinit var storage: FirebaseStorage
+    lateinit var firestore: FirebaseFirestore
+    lateinit var key : String
     private lateinit var name: String
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource : FusedLocationSource
@@ -52,9 +59,20 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+       storage = FirebaseStorage.getInstance()
+       firestore=FirebaseFirestore.getInstance()
        binding.btnConfirm.setOnClickListener{
+           val mkey = FBAuth.getUid()
+           //위치 알아내기
+          val intent = Intent(this, MainActivity::class.java)
+           intent.putExtra("addresskey",mkey)
+           var map = MapData(splitAddress,mkey)
+           firestore.collection("map").document(mkey).set(map).addOnSuccessListener {
+               finish()
+           }
 
-           startActivity(Intent(this, MainActivity::class.java))
+           Log.d("현재위치주소 : ", splitAddress)
+           startActivity(intent)
        }
 
        startProcess()
@@ -114,6 +132,7 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
                 naverMap.cameraPosition.target.latitude,
                 naverMap.cameraPosition.target.longitude
             )
+
             binding.tvLocation.run {
                 text = "위치 이동 중"
                 setTextColor(Color.parseColor("#c4c4c4"))
@@ -184,6 +203,7 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
         val geoCoder = Geocoder(this, Locale.KOREA)
         val address: ArrayList<Address>
         var addressResult = "주소를 가져 올 수 없습니다."
+
         try {
             //세번째 파라미터는 좌표에 대해 주소를 리턴 받는 갯수로
             //한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받기 위해 최대갯수 설정
@@ -193,6 +213,10 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
                 val currentLocationAddress = address[0].getAddressLine(0)
                     .toString()
                 addressResult = currentLocationAddress
+                Log.d("현재위치주소 : ", addressResult)
+                val array = address[0].getAddressLine(0).split(" ")[2]
+                splitAddress = array
+                Log.d("현재위치주소구 : ", splitAddress)
 
             }
 

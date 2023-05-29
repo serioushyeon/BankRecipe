@@ -39,12 +39,14 @@ class CommunityPost : AppCompatActivity() {
     lateinit var period : TextView
     lateinit var time : TextView
     private lateinit var key: String
+    lateinit var map : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_community_post)
         setContentView(R.layout.activity_community_post)
         firestore = FirebaseFirestore.getInstance()
         key = intent.getStringExtra("key").toString()
+        map = findViewById(R.id.post_address)
         val menu = findViewById<ImageView>(R.id.post_menu)
         textWriter = findViewById(R.id.post_name)
         imageIv = findViewById(R.id.ivPostProfile)
@@ -54,7 +56,7 @@ class CommunityPost : AppCompatActivity() {
         Subtext = findViewById(R.id.post_text4)
         time = findViewById(R.id.post_time)
         menu.setOnClickListener {
-           // showDialog()
+            showDialog()
         }
         if (key!=null){
 
@@ -71,7 +73,8 @@ class CommunityPost : AppCompatActivity() {
                     make.text = photo?.make
                     period.text = photo?.period
                     Subtext.text = photo?.subtext
-                    time.text = FBRef.calculationTime(FBAuth.getTime().toLong())
+                    //map.text = intent.getStringExtra("addresskey").toString()
+                    time.text = FBRef.calculationTime(photo?.date!!.toLong())
                     val mykey = FBAuth.getUid()
                     val writerUid = photo?.uid
                     if(mykey.equals(writerUid)) {

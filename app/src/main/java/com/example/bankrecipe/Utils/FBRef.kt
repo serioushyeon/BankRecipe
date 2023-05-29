@@ -1,5 +1,6 @@
 package com.example.bankrecipe.Utils
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -12,6 +13,8 @@ object FBRef { //유일객체 사용
         val nowDateTime = Calendar.getInstance().timeInMillis //현재 시간 to millisecond
         var value = ""
         val differenceValue = nowDateTime - createDateTime //현재 시간 - 비교가 될 시간
+        Log.d("비교가 될 시간", createDateTime.toString())
+        Log.d("현재시간-비교가 될 시간", differenceValue.toString())
         when {
             differenceValue < 60000 -> { //59초 보다 적다면
                 value = "방금 전"

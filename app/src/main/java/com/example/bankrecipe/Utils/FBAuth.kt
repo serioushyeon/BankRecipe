@@ -14,11 +14,8 @@ object FBAuth { //유일객체 사용
     fun getDisplayName() : String{
         return auth.currentUser?.displayName.toString()
     }
-    fun getTime() : String {
-        val currentDataTime = Calendar.getInstance().time
-        val dataFormat = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
-
-        return dataFormat
+    fun getTime(): String {
+        return Calendar.getInstance().timeInMillis.toString()
     }
     fun setPassword(password: String){
         auth.currentUser?.updatePassword(password)

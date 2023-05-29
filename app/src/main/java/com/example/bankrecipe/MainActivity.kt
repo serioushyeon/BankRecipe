@@ -2,6 +2,7 @@ package com.example.bankrecipe
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,25 +13,53 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivityMainBinding
+import com.example.bankrecipe.ui.community.CommunityData
 import com.example.bankrecipe.ui.map.MapActivity
+import com.example.bankrecipe.ui.map.MapData
 import com.example.bankrecipe.ui.recipe.RecipeIngredientPrice
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private var auth : FirebaseAuth? = null //4.6추가
     private lateinit var binding: ActivityMainBinding
     private lateinit var uid : String
-
+    private lateinit var mapaddress: String
+    lateinit var firestore: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth //4.6 추가
+        firestore = FirebaseFirestore.getInstance()
         supportActionBar!!.elevation = 0.0F //액션바 그림자 제거
+        mapaddress = intent.getStringExtra("addresskey").toString()
+        if (mapaddress!="null"){
+            firestore.collection("map").document(mapaddress).get().addOnCompleteListener {
+                    task ->
+                if(task.isSuccessful){
+                    Log.d("key값",mapaddress)
+                    var mapdata = task.result?.toObject(MapData::class.java)
+                    supportActionBar!!.setTitle(mapdata?.mapaddress)
+
+                }
+
+                }
+        }else {
+            firestore.collection("map").document(FBAuth.getUid()).get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("key값", mapaddress)
+                        var mapdata = task.result?.toObject(MapData::class.java)
+                        supportActionBar!!.setTitle(mapdata?.mapaddress)
+                    }
+                }
+        }
 
         val navView: BottomNavigationView = binding.navView
         navView.itemIconTintList = null;
