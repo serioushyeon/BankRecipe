@@ -69,7 +69,7 @@ class CommunityWrite : AppCompatActivity() {
                                     var photo=
                                         CommunityData(
                                             textTitle.text.toString(),textPrice.text.toString(),textMake.text.toString(),
-                                            textPeriods.text.toString(),textEt.text.toString(),imageUri,time,eid,ukey)
+                                            textPeriods.text.toString(),textEt.text.toString(),imageUri,time,eid,ukey,"","")
                                     firestore.collection("photo")
                                         .document().set(photo)
                                         .addOnSuccessListener {

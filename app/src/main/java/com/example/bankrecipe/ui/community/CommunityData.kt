@@ -13,5 +13,6 @@ class CommunityData (
     val date: String="",
     var id:String?=null,
     val uid : String = "",
-    val ekey : String = ""
+    val ekey : String = "",
+    var map:String?=null
         )

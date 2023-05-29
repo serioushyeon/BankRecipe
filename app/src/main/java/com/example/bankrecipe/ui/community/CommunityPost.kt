@@ -19,6 +19,7 @@ import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.Utils.FBRef
 import com.example.bankrecipe.databinding.ActivityCommunityPostBinding
+import com.example.bankrecipe.ui.map.MapData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -60,6 +61,7 @@ class CommunityPost : AppCompatActivity() {
         }
         if (key!=null){
 
+            val mykey = FBAuth.getUid()
             firestore.collection("photo").document(key).get().addOnCompleteListener {
 
                 task ->
@@ -73,10 +75,35 @@ class CommunityPost : AppCompatActivity() {
                     make.text = photo?.make
                     period.text = photo?.period
                     Subtext.text = photo?.subtext
-                    //map.text = intent.getStringExtra("addresskey").toString()
                     time.text = FBRef.calculationTime(photo?.date!!.toLong())
-                    val mykey = FBAuth.getUid()
                     val writerUid = photo?.uid
+                    if(writerUid.equals(FBAuth.getUid())){
+                    firestore.collection("map").document(FBAuth.getUid()).get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                var mapdata = task.result?.toObject(MapData::class.java)
+                                val mapUid = mapdata?.mkey
+                                map.text = mapdata?.mapaddress
+                                Log.d("나의키", mykey)
+                                Log.d("mapkey", mapUid.toString())
+
+
+                            }
+                        }
+                        }else {
+                        if (writerUid != null) {
+                            firestore.collection("map").document(writerUid).get()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        var mapdata = task.result?.toObject(MapData::class.java)
+                                        val mapUid = mapdata?.mkey
+                                        map.text = mapdata?.mapaddress
+
+
+                                    }
+                                }
+                        }
+                    }
                     if(mykey.equals(writerUid)) {
                         Log.d("나의키",mykey)
                         Log.d("작성자키",writerUid.toString())
@@ -86,6 +113,7 @@ class CommunityPost : AppCompatActivity() {
                     }
                 }
             }
+
         }
     }
     private fun showDialog() {
