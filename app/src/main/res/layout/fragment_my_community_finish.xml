@@ -6,7 +6,6 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:padding="20dp"
 tools:context=".ui.community.MyCommunityFinishFragment">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/community_tab_recyclerview"
         android:layout_width="match_parent"
@@ -19,5 +18,4 @@ tools:context=".ui.community.MyCommunityFinishFragment">
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

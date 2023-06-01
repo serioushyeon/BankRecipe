@@ -21,24 +21,46 @@
        android:paddingHorizontal="12dp"
        android:background="@drawable/layout_background"
        android:textColor="@color/black"
-       app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+       app:layout_constraintBottom_toTopOf="@id/btn"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        tools:text="서울특별시 강남구" />
-   <androidx.appcompat.widget.AppCompatButton
-       android:id="@+id/btn_confirm"
+   <LinearLayout
+       android:id="@+id/btn"
        android:layout_width="0dp"
        android:layout_height="52dp"
+       android:orientation="horizontal"
        android:layout_marginStart="16dp"
        android:layout_marginTop="23.74dp"
        android:layout_marginEnd="16dp"
        android:layout_marginBottom="56dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       >
+
+
+   <androidx.appcompat.widget.AppCompatButton
+       android:id="@+id/btn_confirm"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
        android:text="확인"
        android:background="@drawable/roundrect_background"
        android:textColor="@color/black"
        android:textSize="14dp"
        android:textStyle="bold"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent" />
+       />
+   <androidx.appcompat.widget.AppCompatButton
+       android:id="@+id/btn_mysearch"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
+       android:text="검색"
+       android:background="@drawable/roundrect_background"
+       android:textColor="@color/black"
+       android:textSize="14dp"
+       android:textStyle="bold"
+       />
+   </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
