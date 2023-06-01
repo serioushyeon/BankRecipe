@@ -14,6 +14,8 @@ import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.FragmentMyPageBinding
 import com.example.bankrecipe.ui.chat.ChatViewModel
+import com.example.bankrecipe.ui.community.MyCommunity
+import com.example.bankrecipe.ui.map.MapActivity
 import com.example.bankrecipe.ui.sign.SignIn
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
@@ -51,7 +53,8 @@ class MyPageFragment : Fragment() {
             binding.btnEditProfile.visibility = View.VISIBLE
             //판매내역 버튼 눌렀을 때
             binding.btnSell.setOnClickListener {
-
+                val intent = Intent(activity, MyCommunity::class.java)
+                startActivity(intent)
             }
             //binding.imageView2(기본 이미지)
             /*user!!.updateProfile(profileUpdates).addOnCompleteListener { task -> if(task.isSuccessful){
