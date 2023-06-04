@@ -74,6 +74,10 @@ class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
            Log.d("현재위치주소 : ", splitAddress)
            startActivity(intent)
        }
+       binding.btnMysearch.setOnClickListener{
+           val intent= Intent(this,MapSearch::class.java)
+           startActivity(intent)
+       }
 
        startProcess()
     }

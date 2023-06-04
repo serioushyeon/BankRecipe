@@ -109,6 +109,7 @@ class CommunityPost : AppCompatActivity() {
                         Log.d("작성자키",writerUid.toString())
                         menu.isVisible = true
                     }else {
+                        //채팅하기버튼활성화
                         menu.isVisible = false
                     }
                 }
