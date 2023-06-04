@@ -2,6 +2,11 @@
 <menu  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/main_action_location"
+        android:title="위치설정"
+        android:icon="@drawable/location"
+        android:iconTint="@color/white"
+        app:showAsAction="always" />
     <item android:id="@+id/main_action_btn1"
         android:title="버튼1"
         android:icon="@drawable/ic_search"

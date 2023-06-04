@@ -81,9 +81,40 @@
                         android:layout_height="wrap_content"
                         android:text="홍길동"
                         android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/imageView6"
                         app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                    <TextView
+                        android:id="@+id/post_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="삼선동"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/post_name"
+                        app:layout_constraintTop_toBottomOf="@+id/post_name" />
+
+                    <TextView
+                        android:id="@+id/post_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="13dp"
+                        app:layout_constraintStart_toEndOf="@+id/post_address"
+                        app:layout_constraintTop_toBottomOf="@+id/post_name" />
+                    <ImageView
+                        android:id="@+id/post_menu"
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="250dp"
+                        android:layout_marginBottom="75dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/post_title"
+                        app:srcCompat="@drawable/dots" />
 
                     <TextView
                         android:id="@+id/post_text1"

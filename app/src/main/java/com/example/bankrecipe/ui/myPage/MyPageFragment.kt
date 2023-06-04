@@ -14,6 +14,8 @@ import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.FragmentMyPageBinding
 import com.example.bankrecipe.ui.chat.ChatViewModel
+import com.example.bankrecipe.ui.community.MyCommunity
+import com.example.bankrecipe.ui.map.MapActivity
 import com.example.bankrecipe.ui.sign.SignIn
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
@@ -42,13 +44,18 @@ class MyPageFragment : Fragment() {
             //toString의 경우 null을 "null"로 리던
             //로그인 부분 등장
             binding.btnLogout.visibility = View.VISIBLE
-            binding.btnLogout.text = "로그인ㅅ"
+            binding.btnLogout.text = "로그인"
             binding.textView3.text = "로그인이 필요합니다."
             binding.btnEditProfile.visibility = View.GONE
         } else {
             binding.btnLogout.visibility = View.VISIBLE
             binding.textView3.text = FBAuth.getDisplayName()
             binding.btnEditProfile.visibility = View.VISIBLE
+            //판매내역 버튼 눌렀을 때
+            binding.btnSell.setOnClickListener {
+                val intent = Intent(activity, MyCommunity::class.java)
+                startActivity(intent)
+            }
             //binding.imageView2(기본 이미지)
             /*user!!.updateProfile(profileUpdates).addOnCompleteListener { task -> if(task.isSuccessful){
                 Toast.makeText(this.context, "${FBAuth.auth.currentUser?.displayName.toString()}"+"님 환영합니다.ㅅ", Toast.LENGTH_SHORT).show()
