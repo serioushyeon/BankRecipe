@@ -20,7 +20,7 @@ class MapAdapter(val itemList : ArrayList<SearchResultData>) :
     init {
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("photo")?.addSnapshotListener{
-            querySnapshot,firebaseFirestoreException ->
+                querySnapshot,firebaseFirestoreException ->
             itemList.clear()
             for (snapshot in querySnapshot!!.documents) {
                 var item = snapshot.toObject(SearchResultData::class.java)
@@ -39,7 +39,7 @@ class MapAdapter(val itemList : ArrayList<SearchResultData>) :
     }
     override fun onBindViewHolder(holder: MapAdapter.MapSearchViewHolder, position: Int) {
         val context = holder.itemView.context
-       holder.map_title.text = itemList[position].fullAddress
+        holder.map_title.text = itemList[position].fullAddress
         holder.map_subtitle.text= itemList[position].name
         holder.itemView.setOnClickListener{
             onClick(context,position)
