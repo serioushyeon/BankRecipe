@@ -12,11 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.bankrecipe.databinding.FragmentCommunityBinding
+import com.example.bankrecipe.databinding.FragmentRecipeBinding
 import com.example.bankrecipe.databinding.FragmentRecipeTabBinding
 import com.example.bankrecipe.ui.recipe.RecipeAdapter
 import com.example.bankrecipe.ui.recipe.RecipeData
+import com.example.bankrecipe.ui.recipe.RecipeViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -27,21 +31,41 @@ class CommunityFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val recipeViewModel =
+            ViewModelProvider(this).get(RecipeViewModel::class.java)
+
         _binding = FragmentCommunityBinding.inflate(inflater, container, false)
-        firestore = FirebaseFirestore.getInstance()
-        val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
+        val root: View = binding.root
 
 
-       binding.fabMain.setOnClickListener {
-            startActivity(Intent(context,CommunityWrite::class.java))
+        initViewPager()
+
+        return root
+    }
+    private fun initViewPager() {
+        val viewPager2Adapter = CommunityViewPager2Adapter(this.requireActivity())
+        viewPager2Adapter.addFragment(CommunityTabFragment())
+        viewPager2Adapter.addFragment(CommunityListFragment())
+        binding.mysellViewpager.apply {
+            adapter = viewPager2Adapter
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                }
+            })
         }
-        val CommunityAdapter = CommunityAdapter(itemList)
-        CommunityAdapter.notifyDataSetChanged()
-        binding.communityTabRecyclerview.adapter = CommunityAdapter
-        val gridLayoutManager = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false)
-        binding.communityTabRecyclerview.layoutManager = gridLayoutManager
-        return binding.root
+        //ViewPager, TabLayout 연결
+        TabLayoutMediator(binding.mysellTab, binding.mysellViewpager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "동네 거래"
+                1 -> tab.text = "동네 가게"
+            }
+        }.attach()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
