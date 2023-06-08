@@ -2,11 +2,13 @@ package com.example.bankrecipe.ui.community
 
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.graphics.Color
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -41,6 +43,8 @@ class CommunityPost : AppCompatActivity() {
     lateinit var time : TextView
     private lateinit var key: String
     lateinit var map : TextView
+    lateinit var price : TextView //물건 가격
+    lateinit var chatBtn : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_community_post)
@@ -56,6 +60,9 @@ class CommunityPost : AppCompatActivity() {
         period = findViewById(R.id.post_text3)
         Subtext = findViewById(R.id.post_text4)
         time = findViewById(R.id.post_time)
+        price = findViewById(R.id.communityPostPrice)
+        chatBtn = findViewById(R.id.post_chat)
+
         menu.setOnClickListener {
             showDialog()
         }
@@ -75,6 +82,7 @@ class CommunityPost : AppCompatActivity() {
                     make.text = photo?.make
                     period.text = photo?.period
                     Subtext.text = photo?.subtext
+                    price.text = photo?.price+"원" //(6/6추가)
                     time.text = FBRef.calculationTime(photo?.date!!.toLong())
                     val writerUid = photo?.uid
                     if(writerUid.equals(FBAuth.getUid())){
@@ -108,9 +116,14 @@ class CommunityPost : AppCompatActivity() {
                         Log.d("나의키",mykey)
                         Log.d("작성자키",writerUid.toString())
                         menu.isVisible = true
+                        chatBtn.isEnabled = false
+                        chatBtn.setBackgroundColor(Color.CYAN)
+
                     }else {
                         //채팅하기버튼활성화
                         menu.isVisible = false
+                        chatBtn.isEnabled = true
+                        chatBtn.setBackgroundColor(Color.BLUE)
                     }
                 }
             }
@@ -133,5 +146,8 @@ class CommunityPost : AppCompatActivity() {
             alertDialog.dismiss()
             finish()
         }
+    }
+    private fun moveToChat(){
+
     }
 }
