@@ -47,10 +47,7 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
         val imView = itemList.get(position).imageUri
        // val date = itemList[position].date
        holder.community_title.text = itemList[position].title
-        //holder.community_price.text = itemList[position].price
-       // holder.community_make.text = itemList[position].make
-       // holder.community_periods.text = itemList[position].period
-        holder.community_sub.text = itemList[position].subtext
+        holder.community_sub.text= itemList[position].price + "원"
         holder.itemView.setOnClickListener{
             onClick(context,position)
         }

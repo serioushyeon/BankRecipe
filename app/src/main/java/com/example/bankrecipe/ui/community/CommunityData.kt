@@ -10,6 +10,9 @@ class CommunityData (
     var period: String="",
     var subtext: String="",
     val imageUri : String="",
-    var date: Date = Date(),
-    var id:String?=null
+    val date: String="",
+    var id:String?=null,
+    val uid : String = "",
+    val ekey : String = "",
+    var map:String?=null
         )
