@@ -22,6 +22,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.sign.SignUpSeller"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sign.SelectSignUpType"
+            android:exported="false" />
+        <activity
             android:name=".ui.map.MapSearch"
             android:exported="false" />
         <activity
@@ -88,7 +94,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.sign.SignUp"
+            android:name=".ui.sign.SignUpUser"
             android:exported="false" />
         <activity
             android:name=".ui.sign.SignIn"

@@ -4,25 +4,23 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Contacts.Photo
 import android.widget.Toast
 import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.Utils.FBAuth
-import com.example.bankrecipe.databinding.ActivitySignInBinding
-import com.example.bankrecipe.databinding.ActivitySignUpBinding
+import com.example.bankrecipe.databinding.ActivitySignUpUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
-class SignUp : AppCompatActivity() {
+class SignUpUser : AppCompatActivity() {
     private var auth : FirebaseAuth? = null
-    private lateinit var binding: ActivitySignUpBinding
+    private lateinit var binding: ActivitySignUpUserBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivitySignUpUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnSignUpConfirm.setOnClickListener {
@@ -48,7 +46,7 @@ class SignUp : AppCompatActivity() {
                 createAccount(userName,userPassword,userEmail,Photo)
             //다이얼로그 띄우기 : 계정 생성 후 바로 로그인할지 아닐지 결정하는 부분을 띄울지 선택하기
         }
-        binding.btnSignUpBack.setOnClickListener {
+        binding.btnSignUpUserBack.setOnClickListener {
             onBackPressed()
         }
     }
