@@ -50,15 +50,15 @@ class SignUpUser : AppCompatActivity() {
             onBackPressed()
         }
     }
-    private fun enrollUserInformation(Name:String, Photo:String){ //유저정보 업데이트
+    private fun enrollUserInformation(Name:String){ //유저정보 업데이트
         val profileUpdates = userProfileChangeRequest { 
             displayName = Name
-            photoUri = Uri.parse(Photo)
         }
         val user = FBAuth.auth.currentUser
         user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 //회원가입성공했을때 유저 정보 넣는거니까 성공했을땐 아무것도 할 게 없다.
+                //여기서 파이어 스토어에 유저 정보 등록 해야할 듯
             }
         }
     }
@@ -68,7 +68,7 @@ class SignUpUser : AppCompatActivity() {
         auth?.createUserWithEmailAndPassword(Email,password)
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    enrollUserInformation(Name,Photo) //유저정보 업데이트 하고
+                    enrollUserInformation(Name) //유저정보 업데이트 하고
                     MoveMainActivity(auth?.currentUser)
                     Toast.makeText(this, "회원가입 성공"+"\n"+"${FBAuth.getDisplayName()}"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
                 } else {
