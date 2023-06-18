@@ -1,5 +1,6 @@
 package com.example.bankrecipe.ui.sign
 
+import android.app.Person
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -12,14 +13,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpUser : AppCompatActivity() {
     private var auth : FirebaseAuth? = null
+    private var fbFirestore : FirebaseFirestore? = null
     private lateinit var binding: ActivitySignUpUserBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        fbFirestore = FirebaseFirestore.getInstance()
         binding = ActivitySignUpUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,7 +33,7 @@ class SignUpUser : AppCompatActivity() {
             val userPassword = binding.signUpUserPassword.text.toString()
             val userPassword2 = binding.signUpUserPassword2.text.toString()
             val userEmail = binding.signUpEmail.text.toString()
-            val Photo = "null"
+            val userType = "user"
             if(userName.isEmpty()) //제약조건
                 Toast.makeText(this,"이름을 입력하세요.", Toast.LENGTH_SHORT).show()
             else if(userID.isEmpty()) //현재 이메일과 아이디도 동일하게 두는 중.
@@ -43,14 +47,14 @@ class SignUpUser : AppCompatActivity() {
             else if(userPassword != userPassword2)
                 Toast.makeText(this, "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
             else
-                createAccount(userName,userPassword,userEmail,Photo)
+                createAccount(userName,userPassword,userEmail, userID, userType)
             //다이얼로그 띄우기 : 계정 생성 후 바로 로그인할지 아닐지 결정하는 부분을 띄울지 선택하기
         }
         binding.btnSignUpUserBack.setOnClickListener {
             onBackPressed()
         }
     }
-    private fun enrollUserInformation(Name:String){ //유저정보 업데이트
+    private fun enrollUserInformation(Name:String, Password: String, Email: String, ID : String, userType : String){ //유저정보 업데이트
         val profileUpdates = userProfileChangeRequest { 
             displayName = Name
         }
@@ -59,18 +63,27 @@ class SignUpUser : AppCompatActivity() {
             if(task.isSuccessful){
                 //회원가입성공했을때 유저 정보 넣는거니까 성공했을땐 아무것도 할 게 없다.
                 //여기서 파이어 스토어에 유저 정보 등록 해야할 듯
+                var userInfo = PersonalData()
+                userInfo.ID = ID
+                userInfo.UserName = Name
+                userInfo.Password = Password
+                userInfo.userType = userType
+                userInfo.userUid = auth?.uid
+                userInfo.Email = Email
+                fbFirestore?.collection(userType)?.document(auth?.uid.toString())?.set(userInfo)
+                //이렇게 하면 사용자 유형에 따라 컬렉션이 나뉘어지지 않을까?
             }
         }
     }
-    private fun createAccount(Name:String, password:String,Email:String, Photo: String){
+    private fun createAccount(Name:String,password:String, Email:String, userID : String, userType: String){
         //회원가입 성공을 알림.
         //로그인하고 메인액티비티 이동.
         auth?.createUserWithEmailAndPassword(Email,password)
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    enrollUserInformation(Name) //유저정보 업데이트 하고
+                    enrollUserInformation(Name, password, Email, userID, userType) //유저정보 업데이트 하고
                     MoveMainActivity(auth?.currentUser)
-                    Toast.makeText(this, "회원가입 성공"+"\n"+"${FBAuth.getDisplayName()}"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "회원가입 성공"+"\n"+"${Name}"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
                 }

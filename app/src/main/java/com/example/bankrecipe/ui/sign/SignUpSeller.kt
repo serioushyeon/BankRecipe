@@ -15,10 +15,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpSeller : AppCompatActivity() {
     private var auth : FirebaseAuth? = null
+    private var fbFirestore : FirebaseFirestore? = null
     private lateinit var binding: ActivitySignUpSellerBinding
     private lateinit var signUpSellerBtn : Button
     private lateinit var BackBtn : Button
@@ -35,6 +37,7 @@ class SignUpSeller : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        fbFirestore = FirebaseFirestore.getInstance()
         binding = ActivitySignUpSellerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         BackBtn = binding.SignUpSellerBackBtn
@@ -66,7 +69,12 @@ class SignUpSeller : AppCompatActivity() {
                 Toast.makeText(this," 대표자명 확인 필요.",Toast.LENGTH_SHORT).show()
             } else if(emailHead.equals("")||emailDomain.equals("")){
                 Toast.makeText(this," 이메일 주소를 확인해주세요.",Toast.LENGTH_SHORT).show()
-            } else{
+            } else if(ID.equals("")){
+                Toast.makeText(this," 아이디를 확인해주세요.",Toast.LENGTH_SHORT).show()
+            } else if(Password.equals("")){
+                Toast.makeText(this," 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show()
+            }
+            else{
                 emailaddress = emailHead+"@"+emailDomain
             }
 
@@ -97,6 +105,7 @@ class SignUpSeller : AppCompatActivity() {
         user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 //회원가입성공했을때 유저 정보 넣는거니까 성공했을땐 아무것도 할 게 없다.
+                //파이어스토어 유저 정보 업데이트 
             }
         }
     }
