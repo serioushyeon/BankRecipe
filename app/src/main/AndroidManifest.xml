@@ -65,10 +65,10 @@
         </activity>
         <activity
             android:name=".ui.community.CommunityPost"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.community.CommunityWrite"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.recipe.RecipePostRegisterActivity"

@@ -1,6 +1,5 @@
 package com.example.bankrecipe.ui.map
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -9,19 +8,13 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import com.example.bankrecipe.MainActivity
 import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
-import com.example.bankrecipe.databinding.ActivityMainBinding
 import com.example.bankrecipe.databinding.ActivityMapBinding
-import com.example.bankrecipe.ui.community.CommunityWrite
 import com.google.android.gms.location.*
-import com.google.firebase.annotations.concurrent.UiThread
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.naver.maps.geometry.LatLng
@@ -32,7 +25,6 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import java.io.IOException
 import java.util.*
-import java.util.jar.Manifest
 import kotlin.collections.ArrayList
 
 class MapActivity : AppCompatActivity(),  OnMapReadyCallback {
