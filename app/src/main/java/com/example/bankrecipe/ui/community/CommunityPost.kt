@@ -1,14 +1,12 @@
 package com.example.bankrecipe.ui.community
 
 import android.app.AlertDialog
-import android.content.ContentValues
+import android.content.Intent
 import android.graphics.Color
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,14 +19,9 @@ import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.Utils.FBRef
 import com.example.bankrecipe.databinding.ActivityCommunityPostBinding
+import com.example.bankrecipe.ui.chat.ChatingActivity
 import com.example.bankrecipe.ui.map.MapData
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import org.w3c.dom.Text
-import java.text.SimpleDateFormat
-import java.util.*
 
 @GlideModule
 class CommunityPost : AppCompatActivity() {
@@ -41,6 +34,7 @@ class CommunityPost : AppCompatActivity() {
     lateinit var make : TextView
     lateinit var period : TextView
     lateinit var time : TextView
+    lateinit var writerUid : String
     private lateinit var key: String
     lateinit var map : TextView
     lateinit var price : TextView //물건 가격
@@ -84,7 +78,7 @@ class CommunityPost : AppCompatActivity() {
                     Subtext.text = photo?.subtext
                     price.text = photo?.price+"원" //(6/6추가)
                     time.text = FBRef.calculationTime(photo?.date!!.toLong())
-                    val writerUid = photo?.uid
+                    writerUid = photo?.uid!!
                     if(writerUid.equals(FBAuth.getUid())){
                     firestore.collection("map").document(FBAuth.getUid()).get()
                         .addOnCompleteListener { task ->
@@ -124,6 +118,11 @@ class CommunityPost : AppCompatActivity() {
                         menu.isVisible = false
                         chatBtn.isEnabled = true
                         chatBtn.setBackgroundColor(Color.BLUE)
+                        chatBtn.setOnClickListener {
+                            val intent = Intent(applicationContext, ChatingActivity::class.java)
+                            intent.putExtra("destinationUid", writerUid)
+                            startActivity(intent)
+                        }
                     }
                 }
             }
@@ -146,8 +145,5 @@ class CommunityPost : AppCompatActivity() {
             alertDialog.dismiss()
             finish()
         }
-    }
-    private fun moveToChat(){
-
     }
 }

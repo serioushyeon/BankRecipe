@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivityMainBinding
+import com.example.bankrecipe.ui.recipe.LoadKcalData
 import com.example.bankrecipe.ui.recipe.LoadRecipeData
 import com.example.bankrecipe.ui.community.CommunityData
 import com.example.bankrecipe.ui.map.MapActivity
@@ -22,6 +23,7 @@ import com.example.bankrecipe.ui.map.MapData
 import com.example.bankrecipe.ui.recipe.RecipeIngredientPrice
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
@@ -77,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         LoadRecipeData.updateExItem(this.assets)
         LoadRecipeData.updateIngItem(this.assets)
         LoadRecipeData.updateGeneralItem(this.assets)
+        LoadKcalData.updateKcalItem(this.assets)
         uid = intent.getStringExtra("userUid").toString() //uid저장. 로그인 없이 진행될경우 null값
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

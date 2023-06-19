@@ -1,15 +1,12 @@
 package com.example.bankrecipe.ui.recipe
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.CheckedTextView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bankrecipe.databinding.ActivityRegisterIngredientBinding
@@ -147,11 +144,11 @@ class RegisterIngredientActivity : AppCompatActivity() {
     private fun loadIngData(): ArrayList<RegisterIngredientData> {
         var itemList = ArrayList<RegisterIngredientData>()
         val assetManager = this.assets
-        val inputStream: InputStream = assetManager.open("recipe_ingredient.csv")
+        val inputStream: InputStream = assetManager.open("KcalData.csv")
         val csvReader = CSVReader(InputStreamReader(inputStream)) //UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
-            itemList.add(RegisterIngredientData(content[6], false))
+            itemList.add(RegisterIngredientData(content[5], false, content[10]))
         }
         return itemList
     }
