@@ -29,7 +29,8 @@ class SignIn : AppCompatActivity() {
 
         }
         binding.signInToSignUp.setOnClickListener {
-            val intent = Intent(this, SignUp::class.java)
+            //val intent = Intent(this, SignUpUser::class.java)    사용자 구분 없이 가입했었음(기존)
+            val intent = Intent(this, SelectSignUpType::class.java) //변경: 판매자와 일반 사용자를 구분
             startActivity(intent)
             //회원가입 액티비티 호출
         }
