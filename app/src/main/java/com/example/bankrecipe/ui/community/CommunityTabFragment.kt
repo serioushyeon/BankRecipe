@@ -22,7 +22,7 @@ class CommunityTabFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         firestore = FirebaseFirestore.getInstance()
-        val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
+       // val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         _binding = FragmentCommunityTabBinding.inflate(inflater, container, false)

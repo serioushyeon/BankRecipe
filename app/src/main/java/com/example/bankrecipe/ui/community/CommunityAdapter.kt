@@ -44,15 +44,13 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
     }
     override fun onBindViewHolder(holder: CommunityAdapter.CommunityViewHolder, position: Int) {
         val context = holder.itemView.context
-        val imView = itemList.get(position).imageUri
-       // val date = itemList[position].date
+        val imView = itemList[position].imageUri?.get(0).toString()
        holder.community_title.text = itemList[position].title
         holder.community_sub.text= itemList[position].price + "원"
         holder.itemView.setOnClickListener{
             onClick(context,position)
         }
-        //Glide.with(holder.itemView.context).load(itemList[position].imageUri).into(holder.community_img)
-        Glide.with(holder.itemView.context).load(imView).into(holder.community_img)
+       Glide.with(holder.itemView.context).load(imView).into(holder.community_img)
     }
     override fun getItemCount(): Int {
         return itemList.count()
@@ -60,9 +58,6 @@ class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
     inner class CommunityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var community_img = itemView.findViewById<ImageView>(R.id.item_image)
         val community_title = itemView.findViewById<TextView>(R.id.item_title)
-        //val community_price = itemView.findViewById<TextView>(R.id.write_price)
-        //val community_make = itemView.findViewById<TextView>(R.id.write_make)
-        //val community_periods = itemView.findViewById<TextView>(R.id.write_period)
         val community_sub = itemView.findViewById<TextView>(R.id.item_sub)
 
     }

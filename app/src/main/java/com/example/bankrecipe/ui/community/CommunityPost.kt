@@ -13,6 +13,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
 import com.example.bankrecipe.R
@@ -32,6 +34,7 @@ import java.util.*
 class CommunityPost : AppCompatActivity() {
     private lateinit var binding : ActivityCommunityPostBinding
     lateinit var firestore: FirebaseFirestore
+    val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
     lateinit var textWriter: TextView
     lateinit var imageIv: ImageView
     lateinit var Title: TextView
@@ -41,7 +44,9 @@ class CommunityPost : AppCompatActivity() {
     lateinit var time : TextView
     private lateinit var key: String
     lateinit var map : TextView
+    lateinit var viewPager : ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_community_post)
         setContentView(R.layout.activity_community_post)
@@ -50,7 +55,16 @@ class CommunityPost : AppCompatActivity() {
         map = findViewById(R.id.post_address)
         val menu = findViewById<ImageView>(R.id.post_menu)
         textWriter = findViewById(R.id.post_name)
-        imageIv = findViewById(R.id.ivPostProfile)
+        //imageIv = findViewById(R.id.ivPostProfile)
+        val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+              //  indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
+            }
+        }
+        //viewPager = findViewById(R.id.viewPager)
+        //viewPager.adapter = CommunityPostAdapter(itemList,this)
+        //viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        //viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
         Title = findViewById(R.id.post_title)
         make = findViewById(R.id.post_text2)
         period = findViewById(R.id.post_text3)
@@ -68,8 +82,8 @@ class CommunityPost : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d("key값",key.toString())
                     var photo = task.result?.toObject(CommunityData::class.java)
-                    Glide.with(this@CommunityPost).load(photo?.imageUri).into(imageIv)
-                        Log.d("이미지 uri null",photo?.imageUri.toString())
+                    //Glide.with(this@CommunityPost).load(photo?.imageUri).into(imageIv)
+                    //    Log.d("이미지 uri null",photo?.imageUri.toString())
                     textWriter.text = photo?.id
                     Title.text = photo?.title
                     make.text = photo?.make

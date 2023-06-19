@@ -57,7 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.community.CommunityWrite"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.recipe.RecipePostRegisterActivity"
