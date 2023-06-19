@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,13 +27,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.rd.PageIndicatorView
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
 @GlideModule
 class CommunityPost : AppCompatActivity() {
-    private lateinit var binding : ActivityCommunityPostBinding
     lateinit var firestore: FirebaseFirestore
     val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
     lateinit var textWriter: TextView
@@ -48,7 +49,7 @@ class CommunityPost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_community_post)
+        //binding = DataBindingUtil.setContentView(this,R.layout.activity_community_post)
         setContentView(R.layout.activity_community_post)
         firestore = FirebaseFirestore.getInstance()
         key = intent.getStringExtra("key").toString()
@@ -56,15 +57,17 @@ class CommunityPost : AppCompatActivity() {
         val menu = findViewById<ImageView>(R.id.post_menu)
         textWriter = findViewById(R.id.post_name)
         //imageIv = findViewById(R.id.ivPostProfile)
+        val indicator = findViewById<PageIndicatorView>(R.id.indicator)
+
         val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-              //  indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
+                indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
             }
         }
-        //viewPager = findViewById(R.id.viewPager)
-        //viewPager.adapter = CommunityPostAdapter(itemList,this)
-        //viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        //viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
+        viewPager = findViewById(R.id.viewPager)
+        viewPager.adapter = CommunityPostAdapter(itemList,this)
+        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
         Title = findViewById(R.id.post_title)
         make = findViewById(R.id.post_text2)
         period = findViewById(R.id.post_text3)
@@ -82,8 +85,11 @@ class CommunityPost : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d("key값",key.toString())
                     var photo = task.result?.toObject(CommunityData::class.java)
+                    indicator.setSelected(0) // 1번째 이미지가 선택된 것으로 초기화
+                    indicator.count = itemList.size // 이미지 리스트 사이즈만큼 생성
+                    indicator.visibility = View.VISIBLE
                     //Glide.with(this@CommunityPost).load(photo?.imageUri).into(imageIv)
-                    //    Log.d("이미지 uri null",photo?.imageUri.toString())
+                        Log.d("이미지 uri ",photo?.imageUri.toString())
                     textWriter.text = photo?.id
                     Title.text = photo?.title
                     make.text = photo?.make

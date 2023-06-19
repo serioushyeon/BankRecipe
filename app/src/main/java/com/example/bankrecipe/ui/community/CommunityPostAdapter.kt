@@ -41,7 +41,7 @@ class CommunityPostAdapter(val itemList : ArrayList<CommunityData>, val context:
     }
     override fun onBindViewHolder(holder: CommunityPostAdapter.ViewHolder, position: Int) {
        val imview =  itemList[position].imageUri?.toString()
-        Glide.with(holder.itemView.context).load(imview).fitCenter().into(holder.imageArea)
+        Glide.with(holder.itemView.context).load(imview).into(holder.imageArea)
     }
     override fun getItemCount(): Int {
         return itemList.count()
