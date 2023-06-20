@@ -6,7 +6,7 @@ data class CommunityData(
     var make: String="",
     var period: String="",
     var subtext: String="",
-    val imageUri: ArrayList<String>?=null,
+    var imageUri: ArrayList<String>?=null,
     val date: String="",
     var id:String?=null,
     val uid: String = "",
