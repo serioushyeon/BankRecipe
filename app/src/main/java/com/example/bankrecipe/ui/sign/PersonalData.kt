@@ -11,3 +11,5 @@ data class PersonalData( var userUid : String? = null,
                          var businessType : String? = null,
                          var userType : String? = null //seller or user
                         )
+
+
