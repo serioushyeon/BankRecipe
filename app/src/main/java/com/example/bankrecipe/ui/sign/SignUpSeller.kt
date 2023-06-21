@@ -84,7 +84,7 @@ class SignUpSeller : AppCompatActivity() {
         user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 UserInfo.userUid = FBAuth.getUid()
-                fbFirestore?.collection(UserInfo.userType.toString())?.document(UserInfo.userUid.toString())?.set(UserInfo)
+                fbFirestore?.collection("user")?.document(UserInfo.userUid.toString())?.set(UserInfo)
             }
         }
     }

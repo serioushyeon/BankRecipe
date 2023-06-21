@@ -69,7 +69,7 @@ class SignUpUser : AppCompatActivity() {
         user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 userInfo.userUid = FBAuth.getUid()
-                fbFirestore?.collection(userInfo.userType.toString())?.document(userInfo.userUid.toString())?.set(userInfo)
+                fbFirestore?.collection("user")?.document(userInfo.userUid.toString())?.set(userInfo)
             }
         }
     }
