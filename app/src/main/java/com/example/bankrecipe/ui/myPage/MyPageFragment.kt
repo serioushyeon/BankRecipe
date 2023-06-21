@@ -49,7 +49,7 @@ class MyPageFragment : Fragment() {
             binding.btnEditProfile.visibility = View.GONE
         } else {
             binding.btnLogout.visibility = View.VISIBLE
-            binding.textView3.text = FBAuth.getDisplayName()
+            binding.textView3.text = FBAuth.getDisplayName()+" 님 환영합니다."
             binding.btnEditProfile.visibility = View.VISIBLE
             //판매내역 버튼 눌렀을 때
             binding.btnSell.setOnClickListener {
