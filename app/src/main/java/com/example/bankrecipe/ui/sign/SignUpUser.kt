@@ -34,6 +34,10 @@ class SignUpUser : AppCompatActivity() {
             userInfo.Password = binding.signUpUserPassword.text.toString()
             val userPassword2 = binding.signUpUserPassword2.text.toString()
             userInfo.userType = "user"
+            userInfo.businessType = "null"
+            userInfo.corporationLocation = "null"
+            userInfo.corporationName = "null"
+            userInfo.businessNumber = "null"
             //userInfo.userUid = auth?.uid
             userInfo.Email = binding.signUpEmail.text.toString()
             if(userInfo.UserName.toString().isEmpty()) //제약조건
