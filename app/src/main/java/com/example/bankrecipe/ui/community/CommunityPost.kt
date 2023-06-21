@@ -35,7 +35,7 @@ class CommunityPost : AppCompatActivity() {
     private lateinit var key: String
     lateinit var map : TextView
     lateinit var viewPager : ViewPager2
-    private var img =  arrayListOf<String>()
+    private var imgList =  arrayListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -49,7 +49,6 @@ class CommunityPost : AppCompatActivity() {
         //imageIv = findViewById(R.id.ivPostProfile)
         val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
         var indicator = findViewById<PageIndicatorView>(R.id.indicator)
-
         val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
@@ -78,10 +77,6 @@ class CommunityPost : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d("key값",key.toString())
                     var photo = task.result?.toObject(CommunityData::class.java)
-                    for (i in 0 until photo?.imageUri?.size!!) {
-                        img.add(photo?.imageUri!!.get(i))
-                    }
-                    Log.d("img배열" , img.toString())
                     indicator.setSelected(0) // 1번째 이미지가 선택된 것으로 초기화
                     indicator.count = photo?.imageUri!!.size // 이미지 리스트 사이즈만큼 생성
                     Log.d("indicator" , indicator?.count.toString())
