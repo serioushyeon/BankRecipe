@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.bankrecipe.R
-import com.example.bankrecipe.Utils.FBAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.ArrayList
 
@@ -20,7 +20,8 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>,val key:String
     RecyclerView.Adapter<CommunityPostAdapter.ViewHolder>() {
     lateinit var firestore: FirebaseFirestore
     private val keyList = arrayListOf<String>()
-    //private lateinit var imView: String
+    private lateinit var imView: String
+    private var img =  arrayListOf<String>()
     init {
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("photo")?.get()?.addOnSuccessListener { result ->
@@ -32,8 +33,6 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>,val key:String
 
 
             }
-
-                notifyDataSetChanged()
             }
         }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,15 +49,20 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>,val key:String
                 task ->
             if(task.isSuccessful) {
                 var photo = task.result?.toObject(CommunityData::class.java)
+                Log.d("img 값 ", img.toString())
+                itemList[position].imageUri = photo?.imageUri
                     for (i in 0 until photo?.imageUri?.size!!) {
-                        itemList[position].imageUri = photo?.imageUri
-                       val imView = photo?.imageUri?.get(i).toString()
-                        Glide.with(holder.itemView.context).load(imView).fitCenter()
-                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                            .into(holder.imageArea)
-                        Log.d("이미지 uri ", imView)
-
+                        with(holder) {
+                            imView = photo?.imageUri?.get(i).toString()
+                            holder.bindItems(imView)
+                            //imageArea.isVisible = true
+                            /*Glide.with(holder.itemView.context).load(imView).fitCenter()
+                                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                                .into(holder.imageArea)*/
+                        }
                     }
+                //imView = photo?.imageUri?.get(0).toString()
+
 
 
             }
@@ -69,7 +73,13 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>,val key:String
         return itemList.size
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindItems(item: String) {
             val imageArea = itemView.findViewById<ImageView>(R.id.image)
+            Glide.with(context).load(item).fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .into(imageArea)
+            Log.d("이미지 uri ", imView)
+        }
 
     }
 

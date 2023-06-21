@@ -36,13 +36,8 @@ class CommunityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val recipeViewModel =
-            ViewModelProvider(this).get(RecipeViewModel::class.java)
-
         _binding = FragmentCommunityBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
         initViewPager()
 
         return root

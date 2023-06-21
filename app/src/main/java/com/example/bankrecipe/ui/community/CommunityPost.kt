@@ -24,7 +24,7 @@ import java.util.*
 @GlideModule
 class CommunityPost : AppCompatActivity() {
     lateinit var firestore: FirebaseFirestore
-
+    lateinit var adapter: CommunityPostAdapter
     lateinit var textWriter: TextView
     lateinit var imageIv: ImageView
     lateinit var Title: TextView
@@ -35,6 +35,7 @@ class CommunityPost : AppCompatActivity() {
     private lateinit var key: String
     lateinit var map : TextView
     lateinit var viewPager : ViewPager2
+    private var img =  arrayListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -47,18 +48,20 @@ class CommunityPost : AppCompatActivity() {
         textWriter = findViewById(R.id.post_name)
         //imageIv = findViewById(R.id.ivPostProfile)
         val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
-        val indicator = findViewById<PageIndicatorView>(R.id.indicator)
+        var indicator = findViewById<PageIndicatorView>(R.id.indicator)
 
         val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
+
             }
         }
         viewPager = findViewById(R.id.viewPager)
-
-        viewPager.adapter = CommunityPostAdapter(itemList,key,this)
+        adapter = CommunityPostAdapter(itemList,key,this)
+        viewPager.adapter = adapter
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
+
 
         Title = findViewById(R.id.post_title)
         make = findViewById(R.id.post_text2)
@@ -75,8 +78,13 @@ class CommunityPost : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d("key값",key.toString())
                     var photo = task.result?.toObject(CommunityData::class.java)
+                    for (i in 0 until photo?.imageUri?.size!!) {
+                        img.add(photo?.imageUri!!.get(i))
+                    }
+                    Log.d("img배열" , img.toString())
                     indicator.setSelected(0) // 1번째 이미지가 선택된 것으로 초기화
-                    indicator.count = itemList.size // 이미지 리스트 사이즈만큼 생성
+                    indicator.count = photo?.imageUri!!.size // 이미지 리스트 사이즈만큼 생성
+                    Log.d("indicator" , indicator?.count.toString())
                     indicator.visibility = View.VISIBLE
 
                     //Glide.with(this@CommunityPost).load(photo?.imageUri).into(imageIv)
