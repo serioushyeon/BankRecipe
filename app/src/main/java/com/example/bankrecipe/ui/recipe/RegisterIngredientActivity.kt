@@ -1,14 +1,12 @@
 package com.example.bankrecipe.ui.recipe
 
-import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.CheckedTextView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bankrecipe.databinding.ActivityRegisterIngredientBinding
@@ -30,6 +28,12 @@ class RegisterIngredientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterIngredientBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val flag = intent.getStringExtra("flag")
+
+        if(flag == "ref")
+            binding.regIngRegBtn.visibility = View.GONE
+        else if(flag == "post")
+            binding.regIngFindBtn.visibility = View.GONE
 
         originalItemList = loadIngData()
         originalItemList = originalItemList.distinct() as ArrayList<RegisterIngredientData>
@@ -104,8 +108,26 @@ class RegisterIngredientActivity : AppCompatActivity() {
         binding.regIngFindBtn.setOnClickListener {
             if(selectItemList.isEmpty())
                 Toast.makeText(this, "등록된 재료가 없습니다.", Toast.LENGTH_SHORT).show()
-        }
+            else
+            {
+                Intent(this, RecipeForIngredientActivity::class.java).apply { putExtra("item", selectItemList) }
+                    .run { startActivity(this) }
+            }
 
+        }
+        binding.regIngRegBtn.setOnClickListener{
+            val intent = Intent(applicationContext, RecipePostRegisterActivity::class.java).apply {
+                //엑티비티에서 갖고올 데이터
+                putExtra("ingredient", selectItemList)
+                //데이터 전달이 성공했을 때의 변수 값 저장
+                // Result_ok = -1 일 때 엑티비티에 전달된다.
+
+            }
+            setResult(RESULT_OK, intent)
+            //엑티비티 종료
+            if (!isFinishing)
+                finish()
+        }
     }
     private fun search(text: String?){
         searchItemList.clear()
@@ -122,11 +144,11 @@ class RegisterIngredientActivity : AppCompatActivity() {
     private fun loadIngData(): ArrayList<RegisterIngredientData> {
         var itemList = ArrayList<RegisterIngredientData>()
         val assetManager = this.assets
-        val inputStream: InputStream = assetManager.open("recipe_ingredient.csv")
+        val inputStream: InputStream = assetManager.open("KcalData.csv")
         val csvReader = CSVReader(InputStreamReader(inputStream)) //UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
-            itemList.add(RegisterIngredientData(content[6], false))
+            itemList.add(RegisterIngredientData(content[5], false, content[10]))
         }
         return itemList
     }

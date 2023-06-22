@@ -3,18 +3,16 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
 }
-
 android {
     namespace 'com.example.bankrecipe'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.bankrecipe"
         minSdk 28
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -91,4 +89,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //슬라이딩 레이아웃
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
 }

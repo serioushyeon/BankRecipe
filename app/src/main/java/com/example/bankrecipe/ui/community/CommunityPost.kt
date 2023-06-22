@@ -1,6 +1,8 @@
 package com.example.bankrecipe.ui.community
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,13 +18,19 @@ import com.bumptech.glide.annotation.GlideModule
 import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.Utils.FBRef
+import com.example.bankrecipe.databinding.ActivityCommunityPostBinding
+import com.example.bankrecipe.ui.chat.ChatingActivity
 import com.example.bankrecipe.ui.map.MapData
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.rd.PageIndicatorView
 import java.util.*
 
 @GlideModule
 class CommunityPost : AppCompatActivity() {
+    private lateinit var binding : ActivityCommunityPostBinding
     lateinit var firestore: FirebaseFirestore
     lateinit var adapter: CommunityPostAdapter
     lateinit var textWriter: TextView
@@ -32,10 +40,13 @@ class CommunityPost : AppCompatActivity() {
     lateinit var make : TextView
     lateinit var period : TextView
     lateinit var time : TextView
+    lateinit var writerUid : String
     private lateinit var key: String
     lateinit var map : TextView
     lateinit var viewPager : ViewPager2
     private var imgList =  arrayListOf<String>()
+    lateinit var price : TextView //물건 가격
+    lateinit var chatBtn : Button
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -67,12 +78,17 @@ class CommunityPost : AppCompatActivity() {
         period = findViewById(R.id.post_text3)
         Subtext = findViewById(R.id.post_text4)
         time = findViewById(R.id.post_time)
+        price = findViewById(R.id.communityPostPrice)
+        chatBtn = findViewById(R.id.post_chat)
+
         menu.setOnClickListener {
             showDialog()
         }
+        if (key!=null){
 
             val mykey = FBAuth.getUid()
             firestore.collection("photo").document(key).get().addOnCompleteListener {
+
                 task ->
                 if(task.isSuccessful){
                     Log.d("key값",key.toString())
@@ -89,8 +105,9 @@ class CommunityPost : AppCompatActivity() {
                     make.text = photo?.make
                     period.text = photo?.period
                     Subtext.text = photo?.subtext
+                    price.text = photo?.price+"원" //(6/6추가)
                     time.text = FBRef.calculationTime(photo?.date!!.toLong())
-                    val writerUid = photo?.uid
+                    writerUid = photo?.uid!!
                     if(writerUid.equals(FBAuth.getUid())){
                     firestore.collection("map").document(FBAuth.getUid()).get()
                         .addOnCompleteListener { task ->
@@ -122,9 +139,19 @@ class CommunityPost : AppCompatActivity() {
                         Log.d("나의키",mykey)
                         Log.d("작성자키",writerUid.toString())
                         menu.isVisible = true
+                        chatBtn.isEnabled = false
+                        chatBtn.setBackgroundColor(Color.CYAN)
+
                     }else {
                         //채팅하기버튼활성화
                         menu.isVisible = false
+                        chatBtn.isEnabled = true
+                        chatBtn.setBackgroundColor(Color.BLUE)
+                        chatBtn.setOnClickListener {
+                            val intent = Intent(applicationContext, ChatingActivity::class.java)
+                            intent.putExtra("destinationUid", writerUid)
+                            startActivity(intent)
+                        }
                     }
                 }
             }

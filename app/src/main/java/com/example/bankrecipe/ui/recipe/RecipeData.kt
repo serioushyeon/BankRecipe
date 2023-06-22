@@ -11,7 +11,7 @@ data class RecipeData (
     val kcal : String,
     val category: String,
     val imgUrl : String,
-    val price : String
+    val price : String,
     //val img : 타입
 ) : Serializable
 //인텐트로 넘기기 위해 serializable

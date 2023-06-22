@@ -10,9 +10,27 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bankrecipe.R
+import com.example.bankrecipe.ui.community.CommunityData
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RecipePostAdapter (val context: Context?, val itemList: ArrayList<RecipePostData>) :
     RecyclerView.Adapter<RecipePostAdapter.RecipePostViewHolder>() {
+    lateinit var firestore: FirebaseFirestore
+    private val keyList = arrayListOf<String>()
+    init {
+        firestore = FirebaseFirestore.getInstance()
+        firestore?.collection("recipe")
+            ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                itemList.clear()
+                for (snapshot in querySnapshot!!.documents) {
+                    var item = snapshot.toObject(RecipePostData::class.java)
+                    itemList.add(item!!)
+                    keyList.add(snapshot.id)
+                }
+
+                notifyDataSetChanged()
+            }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipePostViewHolder {
         val view =
@@ -25,13 +43,13 @@ class RecipePostAdapter (val context: Context?, val itemList: ArrayList<RecipePo
         holder.recipe_content.text = itemList[position].content
         Glide.with(context!!).load(itemList[position].img).into(holder.recipe_img)
         holder.itemView.setOnClickListener {
-            /*Intent(this.context, RecipeDetailActivity::class.java).apply {
+            Intent(this.context, RecipePostDetailActivity::class.java).apply {
                 putExtra(
                     "item",
-                    itemList[position]
+                    keyList[position]
                 )
             }
-                .run { context.startActivity(this) }*/
+                .run { context.startActivity(this) }
         }
     }
 

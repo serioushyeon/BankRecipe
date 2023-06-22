@@ -12,10 +12,13 @@ import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.FragmentRecipePostBinding
 import com.example.bankrecipe.databinding.FragmentRecipeTabBinding
+import com.example.bankrecipe.ui.community.CommunityData
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RecipePostFragment : Fragment() {
     private var _binding: FragmentRecipePostBinding? = null
     private val binding get() = _binding!!
+    lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +26,18 @@ class RecipePostFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         _binding = FragmentRecipePostBinding.inflate(inflater, container, false)
+        firestore = FirebaseFirestore.getInstance()
 
         binding.recipePostReg.setOnClickListener {
-            //if (FBAuth.getDisplayName() == "null")
-            //    Toast.makeText(context, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
-            //else
-            //{
+            if (FBAuth.getDisplayName() == "null")
+                Toast.makeText(context, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            else
+            {
                 Intent(this.context, RecipePostRegisterActivity::class.java).run { context?.startActivity(this) }
-            //}
+            }
         }
-        var abc = ArrayList<String>()
-        abc.add("test")
+
         var itemList = ArrayList<RecipePostData>()
-        itemList.add(RecipePostData("test", abc, "test", "", "test", "test"))
         val recipePostAdapter = RecipePostAdapter(this.context, itemList)
         recipePostAdapter.notifyDataSetChanged()
 
