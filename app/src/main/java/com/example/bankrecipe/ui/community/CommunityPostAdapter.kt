@@ -13,7 +13,7 @@ import com.example.bankrecipe.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.ArrayList
 
-class CommunityPostAdapter(var itemList: ArrayList<CommunityData>, val key:String, private var context: Context) :
+class CommunityPostAdapter(var itemList: ArrayList<CommunityData>,val key:String, private var context: Context) :
 
     RecyclerView.Adapter<CommunityPostAdapter.ViewHolder>() {
     lateinit var firestore: FirebaseFirestore
@@ -29,6 +29,7 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>, val key:Strin
                 var item = snapshot.toObject(CommunityData::class.java)
                 itemList.add(item!!)
                 keyList.add(snapshot.id)
+
             }
 
             notifyDataSetChanged()
@@ -39,8 +40,6 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>, val key:Strin
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: CommunityPostAdapter.ViewHolder, position: Int) {
-
-
                     //imageArea.isVisible = true
                     Log.d("key 값 ", key)
                     Log.d("key 값 ", itemList.size.toString())
@@ -55,7 +54,7 @@ class CommunityPostAdapter(var itemList: ArrayList<CommunityData>, val key:Strin
 
     }
     override fun getItemCount(): Int {
-        return itemList.size
+        return img.size
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItems(item: String) {
