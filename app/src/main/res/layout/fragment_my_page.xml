@@ -10,11 +10,11 @@
         android:id="@+id/recipe_post_img"
         android:layout_width="64dp"
         android:layout_height="60dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/mypageicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/mypageicon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnLogout"
@@ -110,7 +110,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="116dp"
         android:text="로그인을 해주세요"
         app:layout_constraintEnd_toEndOf="parent"
