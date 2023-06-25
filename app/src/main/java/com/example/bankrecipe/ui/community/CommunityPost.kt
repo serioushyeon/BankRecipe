@@ -30,23 +30,23 @@ import java.util.*
 
 @GlideModule
 class CommunityPost : AppCompatActivity() {
-    private lateinit var binding : ActivityCommunityPostBinding
+    private lateinit var binding: ActivityCommunityPostBinding
     lateinit var firestore: FirebaseFirestore
     lateinit var adapter: CommunityPostAdapter
     lateinit var textWriter: TextView
     lateinit var imageIv: ImageView
     lateinit var Title: TextView
-    lateinit var Subtext : TextView
-    lateinit var make : TextView
-    lateinit var period : TextView
-    lateinit var time : TextView
-    lateinit var writerUid : String
+    lateinit var Subtext: TextView
+    lateinit var make: TextView
+    lateinit var period: TextView
+    lateinit var time: TextView
+    lateinit var writerUid: String
     private lateinit var key: String
-    lateinit var map : TextView
-    lateinit var viewPager : ViewPager2
-    private var imgList =  arrayListOf<String>()
-    lateinit var price : TextView //물건 가격
-    lateinit var chatBtn : Button
+    lateinit var map: TextView
+    lateinit var viewPager: ViewPager2
+    private var imgList = arrayListOf<String>()
+    lateinit var price: TextView //물건 가격
+    lateinit var chatBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -60,17 +60,7 @@ class CommunityPost : AppCompatActivity() {
         //imageIv = findViewById(R.id.ivPostProfile)
         val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
         var indicator = findViewById<PageIndicatorView>(R.id.indicator)
-        val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
 
-            }
-        }
-        viewPager = findViewById(R.id.viewPager)
-        adapter = CommunityPostAdapter(itemList,key,this)
-        viewPager.adapter = adapter
-        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
 
 
         Title = findViewById(R.id.post_title)
@@ -84,44 +74,55 @@ class CommunityPost : AppCompatActivity() {
         menu.setOnClickListener {
             showDialog()
         }
-        if (key!=null){
+        if (key != null) {
 
             val mykey = FBAuth.getUid()
             firestore.collection("photo").document(key).get().addOnCompleteListener {
 
-                task ->
-                if(task.isSuccessful){
-                    Log.d("key값",key.toString())
+                    task ->
+                if (task.isSuccessful) {
+                    Log.d("key값", key.toString())
                     var photo = task.result?.toObject(CommunityData::class.java)
+                    val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
+                        override fun onPageSelected(position: Int) {
+                            indicator.setSelected(position) // ViewPager 의 position 값이 변경된 경우 Indicator Position 변경
+
+                        }
+                    }
+                    viewPager = findViewById(R.id.viewPager)
+                    adapter = CommunityPostAdapter(photo?.imageUri!!, this)
+                    viewPager.adapter = adapter
+                    viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+                    viewPager.registerOnPageChangeCallback(pagerCallback) // 콜백 등록
                     indicator.setSelected(0) // 1번째 이미지가 선택된 것으로 초기화
                     indicator.count = photo?.imageUri!!.size // 이미지 리스트 사이즈만큼 생성
-                    Log.d("indicator" , indicator?.count.toString())
+                    Log.d("indicator", indicator?.count.toString())
                     indicator.visibility = View.VISIBLE
 
                     //Glide.with(this@CommunityPost).load(photo?.imageUri).into(imageIv)
-                        //Log.d("이미지 uri ",photo?.imageUri.toString())
+                    //Log.d("이미지 uri ",photo?.imageUri.toString())
                     textWriter.text = photo?.id
                     Title.text = photo?.title
                     make.text = photo?.make
                     period.text = photo?.period
                     Subtext.text = photo?.subtext
-                    price.text = photo?.price+"원" //(6/6추가)
+                    price.text = photo?.price + "원" //(6/6추가)
                     time.text = FBRef.calculationTime(photo?.date!!.toLong())
                     writerUid = photo?.uid!!
-                    if(writerUid.equals(FBAuth.getUid())){
-                    firestore.collection("map").document(FBAuth.getUid()).get()
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                var mapdata = task.result?.toObject(MapData::class.java)
-                                val mapUid = mapdata?.mkey
-                                map.text = mapdata?.mapaddress
-                                Log.d("나의키", mykey)
-                                Log.d("mapkey", mapUid.toString())
+                    if (writerUid.equals(FBAuth.getUid())) {
+                        firestore.collection("map").document(FBAuth.getUid()).get()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    var mapdata = task.result?.toObject(MapData::class.java)
+                                    val mapUid = mapdata?.mkey
+                                    map.text = mapdata?.mapaddress
+                                    Log.d("나의키", mykey)
+                                    Log.d("mapkey", mapUid.toString())
 
 
+                                }
                             }
-                        }
-                        }else {
+                    } else {
                         if (writerUid != null) {
                             firestore.collection("map").document(writerUid).get()
                                 .addOnCompleteListener { task ->
@@ -135,14 +136,14 @@ class CommunityPost : AppCompatActivity() {
                                 }
                         }
                     }
-                    if(mykey.equals(writerUid)) {
-                        Log.d("나의키",mykey)
-                        Log.d("작성자키",writerUid.toString())
+                    if (mykey.equals(writerUid)) {
+                        Log.d("나의키", mykey)
+                        Log.d("작성자키", writerUid.toString())
                         menu.isVisible = true
                         chatBtn.isEnabled = false
                         chatBtn.setBackgroundColor(Color.CYAN)
 
-                    }else {
+                    } else {
                         //채팅하기버튼활성화
                         menu.isVisible = false
                         chatBtn.isEnabled = true
@@ -156,26 +157,23 @@ class CommunityPost : AppCompatActivity() {
                 }
             }
 
-
-    }
-    private fun initViewPager() {
-
-    }
-    private fun showDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("게시글 수정/삭제")
-        val alertDialog = mBuilder.show()
-
-        alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener {
-            firestore.collection("photo").document(key).delete().addOnCompleteListener {
-                if(it.isSuccessful)
-                    Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-
-            }
-            alertDialog.dismiss()
-            finish()
         }
     }
-}
+        private fun showDialog() {
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("게시글 수정/삭제")
+            val alertDialog = mBuilder.show()
+
+            alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener {
+                firestore.collection("photo").document(key).delete().addOnCompleteListener {
+                    if (it.isSuccessful)
+                        Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
+
+                }
+                alertDialog.dismiss()
+                finish()
+            }
+        }
+    }
