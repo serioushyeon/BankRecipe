@@ -1,4 +1,4 @@
-package com.example.bankrecipe.ui.community
+package com.example.bankrecipe.ui.recipe
 
 import android.content.Context
 import android.util.Log
@@ -10,23 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.bankrecipe.R
-import com.example.bankrecipe.ui.recipe.RecipeImagePostAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.ArrayList
 
-class CommunityPostAdapter(var itemList: ArrayList<String>, private var context: Context) :
+class RecipeImagePostAdapter(var itemList: ArrayList<String>, private var context: Context) :
 
-    RecyclerView.Adapter<CommunityPostAdapter.ViewHolder>() {
+    RecyclerView.Adapter<RecipeImagePostAdapter.ViewHolder>() {
     lateinit var firestore: FirebaseFirestore
     private val keyList = arrayListOf<String>()
     private lateinit var imView: String
     private var img =  arrayListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_image_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recipeps_image_item, parent, false)
         return ViewHolder(view)
     }
-    override fun onBindViewHolder(holder: CommunityPostAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecipeImagePostAdapter.ViewHolder, position: Int) {
 
         holder.bindItems(itemList[position])
     }

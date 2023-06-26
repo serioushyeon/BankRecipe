@@ -41,7 +41,10 @@ class RecipePostAdapter (val context: Context?, val itemList: ArrayList<RecipePo
     override fun onBindViewHolder(holder: RecipePostViewHolder, position: Int) {
         holder.recipe_title.text = itemList[position].title
         holder.recipe_content.text = itemList[position].content
-        Glide.with(context!!).load(itemList[position].img).into(holder.recipe_img)
+        val imView = itemList[position].imageUri?.get(0).toString()
+        Glide.with(context!!).load(imView).into(holder.recipe_img)
+
+        //Glide.with(context!!).load(itemList[position].img).into(holder.recipe_img)
         holder.itemView.setOnClickListener {
             Intent(this.context, RecipePostDetailActivity::class.java).apply {
                 putExtra(
@@ -49,7 +52,7 @@ class RecipePostAdapter (val context: Context?, val itemList: ArrayList<RecipePo
                     keyList[position]
                 )
             }
-                .run { context.startActivity(this) }
+                .run { context!!.startActivity(this) }
         }
     }
 

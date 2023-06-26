@@ -190,17 +190,6 @@ class CommunityWrite : AppCompatActivity() {
 
                     Log.i("imageUri", "이미지 uri: ${finishImage}")
                     getData(finishImage!!)
-
-                 /*   var photo=
-                        CommunityData(
-                            textTitle.text.toString(),textPrice.text.toString(),textMake.text.toString(),
-                            textPeriods.text.toString(),textEt.text.toString(),
-                            abc ,time,eid,ukey,"","")
-                    firestore.collection("photo")
-                        .document().set(photo)
-                        .addOnSuccessListener {
-                            finish()
-                        }*/
                 }
 
             }
