@@ -15,19 +15,18 @@
 
         <ImageView
             android:id="@+id/recipe_post_img"
-            android:layout_width="73dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="68dp"
+            android:layout_width="81dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="33dp"
             android:layout_marginBottom="22dp"
             android:src="@drawable/mypageicon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mypageWelcomeText"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnLogout"
@@ -45,24 +44,41 @@
             android:layout_width="87dp"
             android:layout_height="37dp"
             android:layout_marginStart="198dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="18dp"
             android:background="@drawable/layout_background"
             android:text="프로필 수정"
             app:layout_constraintEnd_toStartOf="@+id/btnLogout"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="8dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypageWelcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
-            android:layout_marginBottom="42dp"
-            android:text="로그인을 해주세요"
+            android:text="로그인을 해주세요\n"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.77" />
+
+        <Button
+            android:id="@+id/btneditprofileCheck"
+            android:layout_width="82dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/layout_background"
+            android:text="완료"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toEndOf="@+id/btnEditProfile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,81 +86,53 @@
         android:id="@+id/btnSell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="left"
         android:text="판매내역"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInterest" />
-
-    <Button
-        android:id="@+id/btnInterest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="464dp"
-        android:gravity="left"
-        android:text="관심목록"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-        tools:layout_editor_absoluteX="56dp" />
-
-    <Button
-        android:id="@+id/btnPurchase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:gravity="left"
-        android:text="구매내역"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSell" />
-
-    <Button
-        android:id="@+id/btnAsk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:gravity="left"
-        android:text="1:1 문의"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPurchase" />
+        app:layout_constraintTop_toBottomOf="@+id/sellerPageInfo" />
 
     <Button
         android:id="@+id/btnTown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="left"
         android:text="내 동네 설정"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsk" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSell" />
 
     <Button
         android:id="@+id/btnWriting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="내가 쓴 글"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTown" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="382dp"
-        android:layout_height="102dp"
-        android:text="지도위치"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="314dp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sellerPageInfo"
         android:layout_width="385dp"
-        android:layout_height="140dp"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="158dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <LinearLayout
+            android:id="@+id/sellerPageInfo1"
             android:layout_width="386dp"
-            android:layout_height="140dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -154,18 +142,22 @@
                 <TextView
                     android:id="@+id/txt1"
                     android:layout_width="75dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="15dp"
                     android:layout_weight="0"
                     android:paddingStart="1dp"
                     android:paddingEnd="5dp"
                     android:text="영업시간 : " />
 
-                <TextView
+                <EditText
                     android:id="@+id/openingTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:ems="30"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -182,12 +174,16 @@
                     android:paddingEnd="5dp"
                     android:text="휴무일 : " />
 
-                <TextView
+                <EditText
                     android:id="@+id/holidayTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:ems="30"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -204,12 +200,15 @@
                     android:paddingEnd="5dp"
                     android:text="전화번호 : " />
 
-                <TextView
+                <EditText
                     android:id="@+id/telNumberTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:ems="30"
+                    android:inputType="text" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -226,13 +225,40 @@
                     android:paddingEnd="5dp"
                     android:text="홈페이지 : " />
 
-                <TextView
+                <EditText
                     android:id="@+id/homepageTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:ems="30"
+                    android:inputType="text" />
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="오시는길 : " />
+
+                <EditText
+                    android:id="@+id/LocationTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:ems="30"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

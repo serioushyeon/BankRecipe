@@ -11,6 +11,7 @@ import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivitySelectSignUpTypeBinding
 import com.example.bankrecipe.databinding.ActivitySignUpSellerBinding
+import com.example.bankrecipe.ui.myPage.SellerMypageData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -39,6 +40,7 @@ class SignUpSeller : AppCompatActivity() {
         }
         signUpSellerBtn.setOnClickListener {
             var userInfo = PersonalData()
+            var mypageInfo = SellerMypageData()
             emailHead = binding.representativeName.text.toString()
             emailDomain = binding.emailDomain.text.toString()
             userInfo.businessNumber = binding.businessNumber.text.toString()
@@ -69,14 +71,15 @@ class SignUpSeller : AppCompatActivity() {
             }
             else{
                 userInfo.Email = emailHead+"@"+emailDomain
-                createAccount(userInfo)
+                createAccount(userInfo, mypageInfo)
+
             }
 
         }
 
     }
 
-    private fun enrollUserInformation(UserInfo : PersonalData){ //유저정보 업데이트
+    private fun enrollUserInformation(UserInfo : PersonalData, mypageInfo : SellerMypageData){ //유저정보 업데이트
         val profileUpdates = userProfileChangeRequest {
             displayName = UserInfo.UserName
         }
@@ -85,17 +88,19 @@ class SignUpSeller : AppCompatActivity() {
             if(task.isSuccessful){
                 UserInfo.userUid = FBAuth.getUid()
                 fbFirestore?.collection("user")?.document(UserInfo.userUid.toString())?.set(UserInfo)
+                fbFirestore?.collection("MypageData")?.document(UserInfo.userUid.toString())?.set(mypageInfo)
+                //마이페이지 기본 정보 등록
             }
         }
     }
 
-    private fun createAccount(userInfo : PersonalData){
+    private fun createAccount(userInfo : PersonalData, mypageInfo: SellerMypageData){
         //회원가입 성공을 알림.
         //로그인하고 메인액티비티 이동.
         auth?.createUserWithEmailAndPassword(userInfo.Email.toString(),userInfo.Password.toString())
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    enrollUserInformation(userInfo) //유저정보 업데이트 하고
+                    enrollUserInformation(userInfo, SellerMypageData()) //유저정보 업데이트 하고
                     MoveMainActivity(auth?.currentUser)
                     Toast.makeText(this, "회원가입 성공"+"\n"+"${userInfo.UserName.toString()}"+"님 환영합니다.", Toast.LENGTH_SHORT).show()
                 } else {
