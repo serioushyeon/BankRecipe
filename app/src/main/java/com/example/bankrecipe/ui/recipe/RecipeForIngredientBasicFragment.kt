@@ -30,8 +30,8 @@ class RecipeForIngredientBasicFragment(val cr: ArrayList<RecipeData>,
         )
         adapter.notifyDataSetChanged()
         binding.recipeForIngredientBasicRV.adapter = adapter
-        binding.recipeForIngredientBasicRV.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
-        return inflater.inflate(R.layout.fragment_recipe_for_ingredient_basic, container, false)
+        binding.recipeForIngredientBasicRV.layoutManager = LinearLayoutManager(this.context)
+        return binding.root
     }
 
 }

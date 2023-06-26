@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.FragmentRecipePostBinding
-import com.example.bankrecipe.databinding.FragmentRecipeTabBinding
-import com.example.bankrecipe.ui.community.CommunityData
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RecipePostFragment : Fragment() {

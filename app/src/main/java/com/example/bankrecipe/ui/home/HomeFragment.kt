@@ -14,11 +14,14 @@ import androidx.viewpager.widget.ViewPager
 import com.example.bankrecipe.databinding.FragmentHomeBinding
 import com.example.bankrecipe.ui.recipe.BudgetActivity
 import com.example.bankrecipe.ui.recipe.RecipeData
+import com.example.bankrecipe.ui.recipe.RecipePostData
 import com.example.bankrecipe.ui.recipe.RegisterIngredientActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import com.opencsv.CSVReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.streams.toList
 
 
@@ -29,7 +32,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +39,6 @@ class HomeFragment : Fragment() {
     ): View {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

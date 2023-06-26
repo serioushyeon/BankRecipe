@@ -25,15 +25,23 @@ class RecipeForIngredientAdapter(
     }
 
     override fun onBindViewHolder(holder: RecipeForIngredientViewHolder, position: Int) {
-        var ingitem = LoadRecipeData.getIngItem().stream().filter { item -> item.num == correctRecipes[position].num }.toList() as ArrayList<RecipeDetaliIngredientData>
-        holder.recipe_title.text = correctRecipes[position].title
-        holder.recipe_summary.text = correctRecipes[position].summary
-        holder.recipe_num.text = ingitem.size.toString() + "개 중 " + itemList[correctRecipes[position].num].toString() + "개 포함"
-        Glide.with(context!!).load(correctRecipes[position].imgUrl).into(holder.recipe_img)
-        holder.itemView.setOnClickListener{
-            Intent(this.context, RecipeDetailActivity::class.java).apply { putExtra("item", correctRecipes[position]) }
-                .run { context.startActivity(this) }
-        }
+            var ingitem = LoadRecipeData.getIngItem().stream()
+                .filter { item -> item.num == correctRecipes[position].num }
+                .toList() as ArrayList<RecipeDetaliIngredientData>
+            holder.recipe_title.text = correctRecipes[position].title
+            holder.recipe_summary.text = correctRecipes[position].summary
+            holder.recipe_num.text =
+                ingitem.size.toString() + "개 중 " + itemList[correctRecipes[position].num].toString() + "개 포함"
+            Glide.with(context!!).load(correctRecipes[position].imgUrl).into(holder.recipe_img)
+            holder.itemView.setOnClickListener {
+                Intent(this.context, RecipeDetailActivity::class.java).apply {
+                    putExtra(
+                        "item",
+                        correctRecipes[position]
+                    )
+                }
+                    .run { context.startActivity(this) }
+            }
     }
 
     override fun getItemCount(): Int {

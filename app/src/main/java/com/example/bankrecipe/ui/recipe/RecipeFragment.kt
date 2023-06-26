@@ -1,7 +1,6 @@
 package com.example.bankrecipe.ui.recipe
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bankrecipe.databinding.FragmentRecipeBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.opencsv.CSVReader
-import java.io.InputStream
-import java.io.InputStreamReader
 
 class RecipeFragment : Fragment() {
 

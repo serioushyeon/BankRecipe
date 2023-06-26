@@ -12,4 +12,4 @@ data class RecipePostData(
     //val tan : String = "",
     //val dan : String = "",
     //val ji : String = ""
-)
+) : java.io.Serializable
