@@ -148,7 +148,7 @@ class RegisterIngredientActivity : AppCompatActivity() {
         val csvReader = CSVReader(InputStreamReader(inputStream)) //UTF-8을 옵션으로 주었을 때 Strng 비교에 문제 발생, 인코딩 옵션 삭제함
         val allContent = csvReader.readAll()
         for (content in allContent) {
-            itemList.add(RegisterIngredientData(content[5], false, content[10]))
+            itemList.add(RegisterIngredientData(content[0], false, content[7]))
         }
         return itemList
     }
