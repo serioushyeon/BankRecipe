@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,24 +53,31 @@ class ChatFragment : Fragment() {
         var destinationUsers = ArrayList<String>()
         var keys = ArrayList<String>()
         init {
-           uid = mFirebaseAuth.currentUser!!.uid
+            if(mFirebaseAuth.currentUser == null){
+                uid = "null"
+                Toast.makeText(context, "로그인 해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                uid = mFirebaseAuth.currentUser!!.uid
 
-            mFirebaseDatabase.reference.child("chatrooms").orderByChild("users/"+uid).equalTo(true).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    chatModels.clear()
-                    for(item : DataSnapshot in snapshot.children){
-                        chatModels.add(item.getValue(ChatModel::class.java)!!)
-                        print(chatModels)
-                        keys.add(item.key!!)
+                mFirebaseDatabase.reference.child("chatrooms").orderByChild("users/" + uid)
+                    .equalTo(true).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        chatModels.clear()
+                        for (item: DataSnapshot in snapshot.children) {
+                            chatModels.add(item.getValue(ChatModel::class.java)!!)
+                            print(chatModels)
+                            keys.add(item.key!!)
+                        }
+                        notifyDataSetChanged()
                     }
-                    notifyDataSetChanged()
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
 
-            })
+                })
+            }
        }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             var view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, parent, false)
@@ -77,6 +85,7 @@ class ChatFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            if(uid != "null"){
             var customViewHolder = holder as CustomViewHolder
             var destinationUid : String = "null"
 
@@ -121,6 +130,7 @@ class ChatFragment : Fragment() {
                 intent = Intent(holder.itemView.context, ChatingActivity::class.java)
                 intent.putExtra("destinationUid", destinationUsers.get(position))
                 startActivity(intent)
+            }
             }
 
         }
