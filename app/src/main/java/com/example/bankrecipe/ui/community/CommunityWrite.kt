@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bankrecipe.R
 import com.example.bankrecipe.Utils.FBAuth
 import com.example.bankrecipe.databinding.ActivityCommunityWriteBinding
+import com.example.bankrecipe.ui.map.MapData
 import com.example.bankrecipe.ui.recipe.RecipePostData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -31,6 +32,7 @@ class CommunityWrite : AppCompatActivity() {
     private val maxNumber = 10
     lateinit var adapter: CommunityWriteAdapter
     //val adapter = CommunityWriteAdapter(list,this)
+    private var mapaddress : String? = null
     lateinit var imageIv : ImageView
     lateinit var textTitle : EditText
     lateinit var textPrice : EditText
@@ -157,25 +159,37 @@ class CommunityWrite : AppCompatActivity() {
         val time = FBAuth.getTime()
         val ukey = FBAuth.getUid()
         val eid = FBAuth.getDisplayName()
-        var photo =
-            CommunityData(
-                textTitle.text.toString(),
-                textPrice.text.toString(),
-                textMake.text.toString(),
-                textPeriods.text.toString(),
-                textEt.text.toString(),
-                list,
-                time,
-                eid,
-                ukey,
-                "",
-                ""
-            )
-        firestore.collection("photo")
-            .document().set(photo)
-            .addOnSuccessListener {
-                finish()
+
+        firestore.collection("map").document(FBAuth.getUid()).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    var mapdata = task.result?.toObject(MapData::class.java)
+                    mapaddress = mapdata!!.mapaddress
+                    var photo =
+                        CommunityData(
+                            textTitle.text.toString(),
+                            textPrice.text.toString(),
+                            textMake.text.toString(),
+                            textPeriods.text.toString(),
+                            textEt.text.toString(),
+                            list,
+                            time,
+                            eid,
+                            ukey,
+                            "",
+                            mapaddress
+
+                        )
+                    firestore.collection("photo")
+                        .document().set(photo)
+                        .addOnSuccessListener {
+                            finish()
+                        }
+                }
             }
+        Log.i("mapaddress", "이미지 uri: ${mapaddress}")
+
+
     }
     private fun imageUpload(uri: Uri, count: Int) {
         val fileName = SimpleDateFormat("yyyyMMddHHmmss_${count}").format(Date())

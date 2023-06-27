@@ -163,13 +163,13 @@ class CommunityPost : AppCompatActivity() {
             val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(mDialogView)
-                .setTitle("게시글 수정/삭제")
+                .setTitle("거래완료")
             val alertDialog = mBuilder.show()
 
             alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener {
                 firestore.collection("photo").document(key).delete().addOnCompleteListener {
                     if (it.isSuccessful)
-                        Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "거래완료", Toast.LENGTH_LONG).show()
 
                 }
                 alertDialog.dismiss()

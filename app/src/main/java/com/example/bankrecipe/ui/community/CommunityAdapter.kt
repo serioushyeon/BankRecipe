@@ -3,6 +3,7 @@ package com.example.bankrecipe.ui.community
 import android.content.Context
 import android.content.Intent
 import android.provider.ContactsContract.CommonDataKinds.Im
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bankrecipe.R
+import com.example.bankrecipe.Utils.FBAuth
+import com.example.bankrecipe.ui.map.MapData
 import com.example.bankrecipe.ui.recipe.RecipeAdapter
 import com.example.bankrecipe.ui.recipe.RecipeData
 import com.google.firebase.firestore.DocumentChange
@@ -18,19 +21,21 @@ import com.google.firebase.firestore.FirebaseFirestore
 import org.w3c.dom.Document
 import org.w3c.dom.Text
 
-class CommunityAdapter(val itemList : ArrayList<CommunityData>) :
+class CommunityAdapter(val itemList : ArrayList<CommunityData>,var map: String) :
     RecyclerView.Adapter<CommunityAdapter.CommunityViewHolder>() {
     lateinit var firestore: FirebaseFirestore
     private val keyList = arrayListOf<String>()
-    init {
+   init {
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("photo")?.addSnapshotListener{
             querySnapshot,firebaseFirestoreException ->
             itemList.clear()
             for (snapshot in querySnapshot!!.documents) {
                 var item = snapshot.toObject(CommunityData::class.java)
-                itemList.add(item!!)
-                keyList.add(snapshot.id)
+                if (snapshot["map"].toString() == map){
+                    itemList.add(item!!)
+                    keyList.add(snapshot.id)
+                }
             }
 
             notifyDataSetChanged()

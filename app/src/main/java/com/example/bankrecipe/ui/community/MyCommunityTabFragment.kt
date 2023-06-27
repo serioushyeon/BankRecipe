@@ -20,7 +20,6 @@ class MyCommunityTabFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         firestore = FirebaseFirestore.getInstance()
-        val itemList = ArrayList<CommunityData>() //리스트 아이템 배열
 
 
     }

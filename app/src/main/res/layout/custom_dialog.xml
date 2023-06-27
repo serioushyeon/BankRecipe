@@ -6,16 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/editbtn"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="수정"
-        android:textColor="@color/main_color"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deletebtn" />
 
     <Button
         android:id="@+id/deletebtn"
@@ -23,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="삭제"
+        android:text="확인"
         android:textColor="@color/main_color"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
