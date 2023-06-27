@@ -4,14 +4,14 @@ plugins {
     id 'com.google.gms.google-services'
 }
 android {
-    namespace 'com.example.bankrecipe'
+    namespace 'com.solid.bankrecipe'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.bankrecipe"
+        applicationId "com.solid.bankrecipe"
         minSdk 28
         targetSdk 33
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
