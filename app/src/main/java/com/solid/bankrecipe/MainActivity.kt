@@ -26,7 +26,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-
+//7/3 메인아이콘 추가
 class MainActivity : AppCompatActivity() {
     private var auth : FirebaseAuth? = null //4.6추가
     private lateinit var binding: ActivityMainBinding
