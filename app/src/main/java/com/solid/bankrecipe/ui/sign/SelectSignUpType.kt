@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioButton
@@ -35,18 +36,11 @@ class SelectSignUpType : AppCompatActivity() {
         userRadioBtn = binding.radioButtonUser
         signUpNextBtn = binding.signUpNextBtn
         type = "" //기본값
-
-        sellerSelectBtn.setOnClickListener {
-
-        }
-        userSelectBtn.setOnClickListener {
-
-        }
-
+        binding.commonExpTxt.visibility = View.GONE
+        binding.sellExpTxt.visibility = View.GONE
         radiogrp.setOnCheckedChangeListener { group, checkedId ->
             Log.d("dlog","라디오 버튼 클릭")
             when(checkedId){
-                //R.id.radio1 -> bidning.textView
                 R.id.radioButtonSeller -> type = "seller"
                 R.id.radioButtonUser -> type = "user"
             }

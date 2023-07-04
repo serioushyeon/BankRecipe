@@ -89,49 +89,48 @@
         android:id="@+id/signUpNextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="다음으로"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.932" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="317dp"
-            android:text="동의 내용" />
+    <TextView
+        android:id="@+id/commonExpTxt"
+        android:layout_width="372dp"
+        android:layout_height="247dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="7dp"
+        android:text="● 누구나 가능합니다.\n\n● 내가 만든 요리를 공유할 수 있습니다\n\n● 예산에 맞는 레시피를 볼 수 있습니다"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <RadioGroup
-            android:id="@+id/permissionRaadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/agreeRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="동의합니다" />
-
-            <RadioButton
-                android:id="@+id/disagreeRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="동의하지 않습니다" />
-        </RadioGroup>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/sellExpTxt"
+        android:layout_width="371dp"
+        android:layout_height="244dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="7dp"
+        android:text="● 사업자 등록을 마친\n\t\t\t사업자만 가능합니다.\n\n● 상품판매를 홍보할 수 있습니다."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
