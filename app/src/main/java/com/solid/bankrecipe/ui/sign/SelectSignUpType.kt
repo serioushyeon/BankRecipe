@@ -15,6 +15,7 @@ import com.solid.bankrecipe.R
 import com.solid.bankrecipe.databinding.ActivityMapBinding
 import com.solid.bankrecipe.databinding.ActivitySelectSignUpTypeBinding
 
+    private lateinit var type : String
 class SelectSignUpType : AppCompatActivity() {
     private lateinit var binding: ActivitySelectSignUpTypeBinding
     private lateinit var SelectedType : String //선택된 사용자 유형
@@ -23,7 +24,7 @@ class SelectSignUpType : AppCompatActivity() {
     private lateinit var userSelectBtn : ImageButton
     private lateinit var sellerRadioBtn : RadioButton
     private lateinit var userRadioBtn : RadioButton
-    private lateinit var type : String
+
     private lateinit var signUpNextBtn : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +37,11 @@ class SelectSignUpType : AppCompatActivity() {
         userRadioBtn = binding.radioButtonUser
         signUpNextBtn = binding.signUpNextBtn
         type = "" //기본값
-        binding.commonExpTxt.visibility = View.GONE
-        binding.sellExpTxt.visibility = View.GONE
         radiogrp.setOnCheckedChangeListener { group, checkedId ->
             Log.d("dlog","라디오 버튼 클릭")
             when(checkedId){
-                R.id.radioButtonSeller -> type = "seller"
-                R.id.radioButtonUser -> type = "user"
+                R.id.radioButtonSeller -> chSeller()
+                R.id.radioButtonUser -> chUser()
             }
         }
         signUpNextBtn.setOnClickListener { 
@@ -61,4 +60,13 @@ class SelectSignUpType : AppCompatActivity() {
 
     }
     //유지 후 선택에 따라 다른 activity를 적용
+
+    private fun chUser(){
+        type = "user"
+        binding.expTxt.text = "● 누구나 가능합니다.\n\n● 내가 만든 요리를 공유할 수 있습니다.\n\n● 예산에 맞는 레시피를 볼 수 있습니다."
+    }
+    private fun chSeller(){
+        type = "seller"
+        binding.expTxt.text = "● 사업자등록을 마친 사업자만 가능합니다.\n\n● 내 가게를 홍보할 수 있습니다.\n\n"
+    }
 }
