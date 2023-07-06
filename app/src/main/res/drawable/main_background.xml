@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:gradientRadius="20%p"
+        android:centerColor="#FFFFFF"
+        android:endColor="#FF7b52"
+        android:startColor="#FF7b52"
+        android:type="radial"
+        android:centerX="0.5"
+        android:centerY="0.60"/>
+    <!--기존 색상 FF7b52 -->
+    <corners android:bottomLeftRadius="5dp"
+        android:bottomRightRadius="5dp"
+        android:topLeftRadius="5dp"
+        android:topRightRadius="5dp"/>
+
+
+</shape>

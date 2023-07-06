@@ -55,7 +55,7 @@ class ChatFragment : Fragment() {
         init {
             if(mFirebaseAuth.currentUser == null){
                 uid = "null"
-                Toast.makeText(context, "로그인 해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "로그인을 해주세요", Toast.LENGTH_SHORT).show()
             }
             else {
                 uid = mFirebaseAuth.currentUser!!.uid
