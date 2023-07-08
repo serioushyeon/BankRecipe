@@ -11,8 +11,8 @@ android {
         applicationId "com.solid.bankrecipe"
         minSdk 28
         targetSdk 33
-        versionCode 3
-        versionName "1.0"
+        versionCode 4 //3
+        versionName "1.1" //1.0
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

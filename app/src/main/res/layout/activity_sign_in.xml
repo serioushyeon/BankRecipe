@@ -9,14 +9,13 @@
 
     <Button
         android:id="@+id/btnToMainActivity"
-        android:layout_width="68dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/layout_background"
-        android:text="back"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="39dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/baseline_arrow_back_ios_24"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -24,7 +23,7 @@
         android:layout_width="219dp"
         android:layout_height="215dp"
         android:layout_marginStart="126dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="126dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,89 +34,96 @@
         android:id="@+id/signInToSignUp"
         android:layout_width="254dp"
         android:layout_height="45dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/button_layout_orange"
         android:text="회원가입"
         android:textColor="@color/main_color"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="521dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="290dp"
-        android:layout_height="165dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="61dp"
+        app:layout_constraintBottom_toTopOf="@+id/resetPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
-        <EditText
-            android:id="@+id/signInUserEmail"
-            android:layout_width="233dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:ems="10"
-            android:hint="아이디"
-            android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.545"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="16dp" />
+    <EditText
+        android:id="@+id/signInUserEmail"
+        android:layout_width="248dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:ems="10"
+        android:hint="아이디"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/signInUserPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <EditText
-            android:id="@+id/signInUserPassword"
-            android:layout_width="243dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="29dp"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:ems="10"
-            android:hint="비밀번호"
-            android:inputType="textPassword"
-            android:paddingLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.727"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInUserEmail"
-            app:layout_constraintVertical_bias="0.38" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/signInUserPassword"
+        android:layout_width="248dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInUserEmail" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="254dp"
         android:layout_height="44dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/main_background"
         android:text="로그인"
         android:textColor="@color/main_ic_launcher_background"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="465dp" />
+        app:layout_constraintBottom_toTopOf="@+id/signInToSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInUserPassword" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="슬로건"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="253dp" />
+        android:layout_marginTop="228dp"
+        android:text="요리도 계획적으로"
+        android:textColor="@color/material_dynamic_tertiary50"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/resetPassword"
         android:layout_width="271dp"
         android:layout_height="34dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="110dp"
         android:text="비밀번호를 잊으셨나요?"
-        android:textSize="10sp"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="605dp" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInToSignUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">뱅크레시피</string>
     <string name="title_home">홈</string>
     <string name="title_recipe">레시피</string>
     <string name="title_community">거래</string>

@@ -35,9 +35,6 @@ class SignUpSeller : AppCompatActivity() {
         setContentView(binding.root)
         BackBtn = binding.SignUpSellerBackBtn
         signUpSellerBtn = binding.signUpSellerBtn
-        BackBtn.setOnClickListener {
-            onBackPressed()
-        }
         signUpSellerBtn.setOnClickListener {
             var userInfo = PersonalData()
             var mypageInfo = SellerMypageData()

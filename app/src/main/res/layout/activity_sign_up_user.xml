@@ -80,16 +80,6 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpUserPassword2" />
 
     <Button
-        android:id="@+id/btnSignUpUserBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:text="back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/btnSignUpConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
