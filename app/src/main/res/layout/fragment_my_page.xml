@@ -24,9 +24,10 @@
             android:src="@drawable/mypageicon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mypageWelcomeText"
-            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.857" />
 
         <Button
             android:id="@+id/btnLogout"
@@ -34,7 +35,7 @@
             android:layout_height="38dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/button_layout_orange"
             android:text="로그아웃"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +47,7 @@
             android:layout_marginStart="198dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/button_layout_orange"
             android:text="프로필 수정"
             app:layout_constraintEnd_toStartOf="@+id/btnLogout"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,7 @@
             android:layout_height="41dp"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/button_layout_orange"
             android:text="완료"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,9 +119,9 @@
         android:id="@+id/sellerPageInfo"
         android:layout_width="385dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
