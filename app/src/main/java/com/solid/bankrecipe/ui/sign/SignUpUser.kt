@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import com.solid.bankrecipe.MainActivity
 import com.solid.bankrecipe.Utils.FBAuth
 import com.solid.bankrecipe.databinding.ActivitySignUpUserBinding

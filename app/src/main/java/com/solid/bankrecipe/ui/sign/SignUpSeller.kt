@@ -33,7 +33,6 @@ class SignUpSeller : AppCompatActivity() {
         fbFirestore = FirebaseFirestore.getInstance()
         binding = ActivitySignUpSellerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        BackBtn = binding.SignUpSellerBackBtn
         signUpSellerBtn = binding.signUpSellerBtn
         signUpSellerBtn.setOnClickListener {
             var userInfo = PersonalData()

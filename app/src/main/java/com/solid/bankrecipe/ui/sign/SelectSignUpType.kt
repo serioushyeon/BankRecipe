@@ -1,6 +1,7 @@
 package com.solid.bankrecipe.ui.sign
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -64,9 +65,15 @@ class SelectSignUpType : AppCompatActivity() {
     private fun chUser(){
         type = "user"
         binding.expTxt.text = "● 누구나 가능합니다.\n\n● 내가 만든 요리를 공유할 수 있습니다.\n\n● 예산에 맞는 레시피를 볼 수 있습니다."
+        activateNextBtn()
     }
     private fun chSeller(){
         type = "seller"
         binding.expTxt.text = "● 사업자등록을 마친 사업자만 가능합니다.\n\n● 내 가게를 홍보할 수 있습니다.\n\n"
+        activateNextBtn()
+    }
+    private fun activateNextBtn(){
+        binding.signUpNextBtn.setBackgroundResource(R.drawable.main_background)
+        binding.signUpNextBtn.setTextColor(Color.WHITE)
     }
 }
