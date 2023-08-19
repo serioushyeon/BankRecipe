@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_ic_launcher_background"
     tools:context=".ui.myPage.MyPageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,38 +83,6 @@
             app:layout_constraintVertical_bias="0.08" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="112dp"
-        android:gravity="left"
-        android:text="판매내역"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerPageInfo" />
-
-    <Button
-        android:id="@+id/btnTown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
-        android:gravity="left"
-        android:text="내 동네 설정"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSell" />
-
-    <Button
-        android:id="@+id/btnWriting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
-        android:text="내가 쓴 글"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTown" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sellerPageInfo"
@@ -262,5 +231,93 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="264dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellerPageInfo">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginEnd="40dp"
+            android:drawableTop="@drawable/announce"
+            android:text="공지사항"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/btnWriting"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:drawableTop="@drawable/mypost"
+            android:text="내가 쓴 글"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSell"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:drawableTop="@drawable/buyorsell"
+            android:text="판매/구매"
+            app:layout_constraintStart_toEndOf="@+id/btnWriting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnTown"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginEnd="148dp"
+            android:layout_marginBottom="44dp"
+            android:drawableTop="@drawable/mapselectmypage"
+            android:text="동네설정"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginBottom="44dp"
+            android:drawableTop="@drawable/askmypage"
+            android:text="문의하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="97dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="37dp"
+            android:drawableTop="@drawable/favorite_review"
+            android:text="관심목록\n후기"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnWriting" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="회원탈퇴"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
