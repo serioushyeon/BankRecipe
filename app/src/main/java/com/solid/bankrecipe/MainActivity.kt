@@ -26,6 +26,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.solid.bankrecipe.ui.Search.SearchActivity
+import com.solid.bankrecipe.ui.map.MapSearch
+
 //7/3 메인아이콘 추가
 class MainActivity : AppCompatActivity() {
     private var auth : FirebaseAuth? = null //4.6추가
@@ -99,7 +102,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, MapActivity::class.java)
                 startActivity(intent)
                 return super.onOptionsItemSelected(item)}
-            R.id.main_action_btn1 -> { return true }
+            R.id.main_action_btn1 -> {
+                    val intent= Intent(this, SearchActivity::class.java)
+                    startActivity(intent)
+                return super.onOptionsItemSelected(item) }
             R.id.main_action_btn2 -> { return true }
             R.id.main_action_btn3 -> { return  true}
             else -> {return super.onOptionsItemSelected(item)}
