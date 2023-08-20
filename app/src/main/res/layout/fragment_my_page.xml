@@ -8,95 +8,70 @@
     tools:context=".ui.myPage.MyPageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="385dp"
-        android:layout_height="140dp"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="16dp">
+        android:id="@+id/mypagefirst"
+        android:layout_width="410dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/sellerPageInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/recipe_post_img"
             android:layout_width="81dp"
             android:layout_height="76dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="33dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/mypageicon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/mypageWelcomeText"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.857" />
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="86dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_layout_orange"
-            android:text="로그아웃"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnEditProfile"
-            android:layout_width="87dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="198dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="18dp"
+            android:layout_width="85dp"
+            android:layout_height="29dp"
             android:background="@drawable/button_layout_orange"
             android:text="프로필 수정"
-            app:layout_constraintEnd_toStartOf="@+id/btnLogout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="235dp"
+            tools:layout_editor_absoluteY="7dp" />
 
         <TextView
             android:id="@+id/mypageWelcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="36dp"
             android:text="로그인을 해주세요\n"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.77" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btneditprofileCheck"
-            android:layout_width="82dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="80dp"
+            android:layout_height="33dp"
             android:background="@drawable/button_layout_orange"
             android:text="완료"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toEndOf="@+id/btnEditProfile"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.08" />
-
+            tools:layout_editor_absoluteX="331dp"
+            tools:layout_editor_absoluteY="7dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sellerPageInfo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/edit_text_layout_gray"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/mypagefirst">
 
         <LinearLayout
             android:id="@+id/sellerPageInfo1"
@@ -218,7 +193,8 @@
                     android:background="@null"
                     android:ems="30"
                     android:hint="입력되지않음"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -245,7 +221,8 @@
                     android:background="@null"
                     android:ems="30"
                     android:hint="입력되지않음"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -270,106 +247,92 @@
                     android:background="@null"
                     android:ems="30"
                     android:hint="입력되지않음"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/button_layout_orange"
+    <ScrollView
+        android:layout_width="395dp"
+        android:layout_height="288dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sellerPageInfo">
 
-        <Button
-            android:id="@+id/btnannouncemypage"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="44dp"
-            android:drawableTop="@drawable/announce"
-            android:text="공지사항"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnWriting"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="16dp"
-            android:drawableTop="@drawable/mypost"
-            android:text="내가 쓴 글"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnWriting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/mypost"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t내가 쓴 글" />
 
-        <Button
-            android:id="@+id/btnSell"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="2dp"
-            android:drawableTop="@drawable/buyorsell"
-            android:text="판매/구매"
-            app:layout_constraintEnd_toStartOf="@+id/btnannouncemypage"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btnWriting"
-            tools:layout_editor_absoluteY="17dp" />
+            <Button
+                android:id="@+id/btnSell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/buyorsell"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t판매/구매" />
 
-        <Button
-            android:id="@+id/btnTown"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="16dp"
-            android:drawableTop="@drawable/mapselectmypage"
-            android:text="동네설정"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/btnannouncemypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/announce"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t공지사항" />
 
-        <Button
-            android:id="@+id/btnaskmypage"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="16dp"
-            android:drawableTop="@drawable/askmypage"
-            android:text="문의하기"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/btnreviewmypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/favorite_review"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t관심목록 또는 후기" />
 
-        <Button
-            android:id="@+id/btnreviewmypage"
-            android:layout_width="97dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginBottom="24dp"
-            android:drawableTop="@drawable/favorite_review"
-            android:text="관심목록\n후기"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/btnTown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/mapselectmypage"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t동네설정" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnaskmypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/askmypage"
+                android:drawableRight="@drawable/mypagenextarrow"
+                android:gravity="center|left"
+                android:text="\t\t\t\t문의하기" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="65dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_text_layout_gray"
-        android:text="회원탈퇴"
-        android:textColor="@color/design_default_color_error"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="86dp"
+                android:layout_height="38dp"
+                android:background="@drawable/button_layout_orange"
+                android:text="로그아웃" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

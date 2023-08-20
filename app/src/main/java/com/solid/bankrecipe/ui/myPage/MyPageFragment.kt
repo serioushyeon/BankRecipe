@@ -111,6 +111,26 @@ class MyPageFragment : Fragment() {
             binding.btnLogout.visibility = View.VISIBLE
 
         }
+        binding.btnannouncemypage.setOnClickListener {
+            if(FBAuth.getDisplayName() == "null"){ //문의사항 골자
+
+            }
+            else{
+                val intentannouce = Intent(activity, mypageToAnnounce::class.java)
+                startActivity(intentannouce)
+                //manifest에서 .은 현재 패키지를 의미함.
+            }
+        }
+        binding.btnaskmypage.setOnClickListener {
+            if(FBAuth.getDisplayName() == "null"){ //문의사항 골자
+
+            }
+            else{
+                val intentannouce = Intent(activity, mypageToAsk::class.java)
+                startActivity(intentannouce)
+                //manifest에서 .은 현재 패키지를 의미함.
+            }
+        }
 
         return root
     }

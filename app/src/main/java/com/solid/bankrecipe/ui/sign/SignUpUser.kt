@@ -58,7 +58,6 @@ class SignUpUser : AppCompatActivity() {
             //다이얼로그 띄우기 : 계정 생성 후 바로 로그인할지 아닐지 결정하는 부분을 띄울지 선택하기
         }
     }
-
     private fun enrollUserInformation(userInfo : PersonalData){ //유저정보 업데이트
         val profileUpdates = userProfileChangeRequest { 
             displayName = userInfo.UserName
