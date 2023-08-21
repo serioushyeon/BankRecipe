@@ -326,7 +326,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/askmypage"
                 android:drawableRight="@drawable/mypagenextarrow"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:text="\t\t\t\t문의하기" />
 
             <Button

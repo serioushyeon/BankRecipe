@@ -80,8 +80,8 @@ class MyPageFragment : Fragment() {
             }*/
             // seller 마이페이지x , 기본 유저 페이지로 보여주기
         }
-        binding.btnLogout.setOnClickListener { //온전히 로그아웃만 기능할 것.
-            if(FBAuth.getDisplayName() == "null"){ //로그인 버튼
+        /*
+        if(FBAuth.getDisplayName() == "null"){ //로그인 버튼
                 val intent = Intent(activity, SignIn::class.java)
                 startActivity(intent)
                 //manifest에서 .은 현재 패키지를 의미함.
@@ -90,17 +90,28 @@ class MyPageFragment : Fragment() {
                 mypageInit(binding)
                 FBAuth.auth.signOut()
             }
+         */
+        binding.btnLogout.setOnClickListener { //온전히 로그아웃만 기능할 것.
+            mypageInit(binding)
+            FBAuth.auth.signOut()
         }
 
         binding.btnEditProfile.setOnClickListener { //로그인 또는 프로필 수정 분기 필요.
-
-            if(userType.equals("seller")){
-                isabledSellerEditTxt(binding)
+            if(FBAuth.getDisplayName() == "null"){ //로그인 버튼
+                val intent = Intent(activity, SignIn::class.java)
+                startActivity(intent)
+                //manifest에서 .은 현재 패키지를 의미함.
             }
-            binding.btneditprofileCheck.visibility = View.VISIBLE
-            binding.btnEditProfile.visibility = View.GONE
-            binding.btnLogout.visibility = View.GONE
-            //editText에 대해선 setText로 우선 수정되고 다시 저장하는 과정이 필요함
+            else{
+                if(userType.equals("seller")){
+                    isabledSellerEditTxt(binding)
+                }
+                binding.btneditprofileCheck.visibility = View.VISIBLE
+                binding.btnEditProfile.visibility = View.GONE
+                binding.btnLogout.visibility = View.GONE
+                //editText에 대해선 setText로 우선 수정되고 다시 저장하는 과정이 필요함
+            }
+
         }
 
         binding.btneditprofileCheck.setOnClickListener {
