@@ -46,7 +46,6 @@ class MyPageFragment : Fragment() {
         //val str = FBAuth.auth.currentUser?.uid //toString일 때 문제
         FBFireStore = FirebaseFirestore.getInstance()
         var userInfoRef = FBFireStore!!.collection("user")
-        binding.btneditprofileCheck.visibility = View.GONE
         if (FBAuth.getDisplayName() == "null") { //사용자가 없을 때
             //toString의 경우 null을 "null"로 리턴
             //로그인 부분 등장
@@ -64,7 +63,8 @@ class MyPageFragment : Fragment() {
             }
             binding.btnLogout.visibility = View.VISIBLE
             binding.mypageWelcomeText.text = FBAuth.getDisplayName()+" 님 \n 환영합니다."
-            binding.btnEditProfile.visibility = View.VISIBLE
+            binding.btnEditProfile.setText("프로필 수정")
+            binding.btneditprofileCheck.visibility = View.GONE
             //openingTxt.setText(userType)
 
             //판매내역 버튼 눌렀을 때
@@ -80,7 +80,7 @@ class MyPageFragment : Fragment() {
             }*/
             // seller 마이페이지x , 기본 유저 페이지로 보여주기
         }
-        binding.btnLogout.setOnClickListener {
+        binding.btnLogout.setOnClickListener { //온전히 로그아웃만 기능할 것.
             if(FBAuth.getDisplayName() == "null"){ //로그인 버튼
                 val intent = Intent(activity, SignIn::class.java)
                 startActivity(intent)
@@ -92,15 +92,15 @@ class MyPageFragment : Fragment() {
             }
         }
 
-        binding.btnEditProfile.setOnClickListener { 
-            //프로필 수정
+        binding.btnEditProfile.setOnClickListener { //로그인 또는 프로필 수정 분기 필요.
+
             if(userType.equals("seller")){
                 isabledSellerEditTxt(binding)
             }
             binding.btneditprofileCheck.visibility = View.VISIBLE
             binding.btnEditProfile.visibility = View.GONE
             binding.btnLogout.visibility = View.GONE
-            //editText에 대해선 setText로 우선 수정되니까 다시 데이터를 가져올 필요는 없을 듯함.
+            //editText에 대해선 setText로 우선 수정되고 다시 저장하는 과정이 필요함
         }
 
         binding.btneditprofileCheck.setOnClickListener {
@@ -112,7 +112,7 @@ class MyPageFragment : Fragment() {
 
         }
         binding.btnannouncemypage.setOnClickListener {
-            if(FBAuth.getDisplayName() == "null"){ //문의사항 골자
+            if(FBAuth.getDisplayName() == "null"){ //공지사항 골자
 
             }
             else{
@@ -121,7 +121,7 @@ class MyPageFragment : Fragment() {
                 //manifest에서 .은 현재 패키지를 의미함.
             }
         }
-        binding.btnaskmypage.setOnClickListener {
+        binding.btnaskmypage.setOnClickListener { //문의사항 골자
             if(FBAuth.getDisplayName() == "null"){ //문의사항 골자
 
             }
@@ -140,8 +140,8 @@ class MyPageFragment : Fragment() {
     }
 
 }
-private fun LoadMypageData(userType : String, binding : FragmentMyPageBinding) {
-    if(userType.equals("seller")){ //판매자
+private fun LoadMypageData(userType : String, binding : FragmentMyPageBinding) { //유저 데이터 로드
+    if(userType.equals("seller")){ //판매자데이터 로드 (상호부터 기타 종목)
         var userMypageRef = FBFireStore?.collection("MypageData")
         userMypageRef?.get()?.addOnCompleteListener { task ->
             if(task.isSuccessful){
@@ -160,16 +160,18 @@ private fun LoadMypageData(userType : String, binding : FragmentMyPageBinding) {
         disabledSellerEditTxt(binding)
     }
     else{ //일반 사용자
-        binding.sellerPageInfo.visibility = View.GONE
+        binding.sellerPageInfo.visibility = View.GONE //한번 더 써봣음(확실하게(
     }
 }
-private fun mypageInit(binding : FragmentMyPageBinding){
-    binding.btnLogout.visibility = View.VISIBLE
+private fun mypageInit(binding : FragmentMyPageBinding){ //로그인x
+    binding.btnLogout.visibility = View.GONE //로그아웃 버튼 숨기기
     binding.btnLogout.text = "로그인"
     binding.mypageWelcomeText.text = "로그인이 필요합니다."
-    binding.btnEditProfile.visibility = View.GONE
+    binding.btnEditProfile.setText("로그인")
+    binding.btnEditProfile.visibility = View.VISIBLE //로그인, 프로필 수정 전환
     binding.sellerPageInfo.visibility = View.GONE
-    binding.btneditprofileCheck.visibility = View.GONE
+    binding.btneditprofileCheck.visibility = View.GONE //프로필 수정확인
+    binding.btnquit.visibility = View.GONE //회원탈퇴 숨김
 }
 fun disabledSellerEditTxt(binding : FragmentMyPageBinding){
     binding.holidayTxt.isEnabled = false

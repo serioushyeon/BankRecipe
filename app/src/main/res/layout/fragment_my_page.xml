@@ -32,33 +32,37 @@
 
         <Button
             android:id="@+id/btnEditProfile"
-            android:layout_width="85dp"
-            android:layout_height="29dp"
+            android:layout_width="87dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="35dp"
             android:background="@drawable/button_layout_orange"
             android:text="프로필 수정"
-            tools:layout_editor_absoluteX="235dp"
-            tools:layout_editor_absoluteY="7dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypageWelcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="36dp"
             android:text="로그인을 해주세요\n"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recipe_post_img"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btneditprofileCheck"
             android:layout_width="80dp"
-            android:layout_height="33dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="30dp"
             android:background="@drawable/button_layout_orange"
             android:text="완료"
-            tools:layout_editor_absoluteX="331dp"
-            tools:layout_editor_absoluteY="7dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -313,7 +317,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/mapselectmypage"
                 android:drawableRight="@drawable/mypagenextarrow"
-                android:gravity="center|left"
+                android:gravity="left"
                 android:text="\t\t\t\t동네설정" />
 
             <Button
@@ -322,15 +326,28 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/askmypage"
                 android:drawableRight="@drawable/mypagenextarrow"
-                android:gravity="center|left"
+                android:gravity="center"
                 android:text="\t\t\t\t문의하기" />
 
             <Button
                 android:id="@+id/btnLogout"
-                android:layout_width="86dp"
-                android:layout_height="38dp"
-                android:background="@drawable/button_layout_orange"
-                android:text="로그아웃" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center|left"
+                android:paddingLeft="25dp"
+                android:text="로그아웃"
+                android:textColor="@color/main_color" />
+
+            <Button
+                android:id="@+id/btnquit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:gravity="center|right"
+                android:paddingRight="25dp"
+                android:text="회원탈퇴"
+                android:textColor="@color/design_default_color_error" />
 
         </LinearLayout>
     </ScrollView>
