@@ -1,60 +1,50 @@
 package com.solid.bankrecipe.ui.Search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.firestore.FirebaseFirestore
 import com.solid.bankrecipe.R
+import com.solid.bankrecipe.databinding.FragmentCommunityTabBinding
+import com.solid.bankrecipe.databinding.FragmentSellSearchBinding
+import com.solid.bankrecipe.ui.community.CommunityData
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SellSearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SellSearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentSellSearchBinding?= null
+    lateinit var firestore: FirebaseFirestore
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        firestore = FirebaseFirestore.getInstance()
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
+        _binding = FragmentSellSearchBinding.inflate(inflater, container, false)
+        firestore = FirebaseFirestore.getInstance()
+        val itemList = ArrayList<CommunityData>()
+
+        val SearchAdapter = SearchAdapter(itemList)
+        SearchAdapter.notifyDataSetChanged()
+        binding.searchTabRecyclerview.adapter = SearchAdapter
+        val gridLayoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        binding.searchTabRecyclerview.layoutManager = gridLayoutManager
+        //검색editetext 변화시
+
+        binding.searchBarInputButton.setOnClickListener {
+                //제목이 같은글자가 속해있을시 recyclerview 나오기
+
         }
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sell_search, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SellSearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SellSearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
