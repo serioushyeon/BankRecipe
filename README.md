@@ -1,6 +1,6 @@
 # BankRecipe
 
-<h1 align="center"><strong><a href="https://moodbarcode.com"> ⭐️ 뱅크레시피 ⭐️ </h1>
+<h1 align="center"><strong> ⭐️ 뱅크레시피 ⭐️ </h1>
 
 <h3 align="center">👉 농림축산식품 공공ㆍ빅데이터 활용 창업경진대회 출품작입니다. 👈</a></strong></h3>
 
